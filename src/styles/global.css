@@ -442,7 +442,9 @@ ul {
   }
 }
 
-/* —— Header glass (fixed = backdrop-filter fiable en prod) —— */
+/* —— Header glass ——
+   Important : PAS de transform sur cet élément (ça casse backdrop-filter).
+   Fond assez opaque pour rester lisible même si le blur échoue. */
 .site-header {
   position: fixed;
   top: 0;
@@ -452,30 +454,21 @@ ul {
   height: var(--header-h);
   display: flex;
   align-items: center;
-  /* Fond semi-transparent obligatoire pour voir le flou */
-  background: rgba(255, 255, 255, 0.42);
-  border-bottom: 1px solid rgba(230, 224, 212, 0.55);
-  backdrop-filter: blur(22px) saturate(1.4);
-  -webkit-backdrop-filter: blur(22px) saturate(1.4);
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
+  background-color: rgba(247, 244, 238, 0.88);
+  border-bottom: 1px solid rgba(230, 224, 212, 0.75);
+  /* Couche frosted : blur du contenu qui passe derrière */
+  backdrop-filter: blur(16px) saturate(1.2);
+  -webkit-backdrop-filter: blur(16px) saturate(1.2);
   transition:
-    background 200ms ease,
+    background-color 200ms ease,
     border-color 200ms ease,
     box-shadow 200ms ease;
 }
 
 .site-header.is-scrolled {
-  background: rgba(247, 244, 238, 0.72);
-  border-bottom-color: rgba(230, 224, 212, 0.9);
-  box-shadow: 0 10px 32px rgba(20, 22, 28, 0.07);
-}
-
-@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-  .site-header,
-  .site-header.is-scrolled {
-    background: rgba(247, 244, 238, 0.94);
-  }
+  background-color: rgba(247, 244, 238, 0.94);
+  border-bottom-color: var(--color-border);
+  box-shadow: 0 8px 24px rgba(20, 22, 28, 0.06);
 }
 
 .site-header .container {
