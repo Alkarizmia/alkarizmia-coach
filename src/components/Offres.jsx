@@ -1,5 +1,8 @@
+import { useState } from "react";
+import Estimator from "./Estimator.jsx";
+
 /**
- * Formules — 3 cartes + option suivi mensuel.
+ * Formules — 3 cartes, simulateur de prix, option suivi mensuel.
  * (Fichier conservé : Offres.jsx — arborescence inchangée.)
  */
 const FORMULES = [
@@ -27,6 +30,9 @@ const FORMULES = [
 ];
 
 export default function Offres() {
+  const [match, setMatch] = useState(null);
+  const matched = match?.replace(" +", "");
+
   return (
     <section id="offres" className="section" aria-labelledby="formules-title">
       <div className="container">
@@ -41,12 +47,18 @@ export default function Offres() {
           {FORMULES.map((formule) => (
             <article
               key={formule.name}
-              className={`formule-card${formule.featured ? " formule-card--featured" : ""}`}
+              className={`formule-card${formule.featured ? " formule-card--featured" : ""}${matched === formule.name ? " formule-card--match" : ""}`}
               data-reveal
               data-reveal-group="formules"
             >
-              {formule.featured && (
-                <span className="formule-card__badge">Le plus choisi</span>
+              {matched === formule.name ? (
+                <span className="formule-card__badge formule-card__badge--match">
+                  Pour vous
+                </span>
+              ) : (
+                formule.featured && (
+                  <span className="formule-card__badge">Le plus choisi</span>
+                )
               )}
               <h3 className="formule-card__name">{formule.name}</h3>
               <p className="formule-card__price">{formule.price}</p>
@@ -54,6 +66,8 @@ export default function Offres() {
             </article>
           ))}
         </div>
+
+        <Estimator onResult={setMatch} />
 
         <div className="formules-option" data-reveal>
           <p className="formules-option__label">Option</p>

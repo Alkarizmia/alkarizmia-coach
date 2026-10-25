@@ -2,7 +2,14 @@ import { useEffect, useRef } from "react";
 import { initHeaderScroll } from "../motion.js";
 import logoMark from "../assets/logo-mark.svg";
 
-/** Header sticky — marque à gauche, CTA à droite */
+const NAV = [
+  { href: "#offres", label: "Formules" },
+  { href: "#processus", label: "Étapes" },
+  { href: "#realisations", label: "Réalisations" },
+  { href: "#faq", label: "FAQ" },
+];
+
+/** Header sticky — marque à gauche, navigation (desktop), CTA à droite */
 export default function Header() {
   const ref = useRef(null);
 
@@ -21,6 +28,13 @@ export default function Header() {
           />
           Alkarizmia
         </a>
+        <nav className="site-nav" aria-label="Sections">
+          {NAV.map((item) => (
+            <a key={item.href} href={item.href} className="site-nav__link">
+              {item.label}
+            </a>
+          ))}
+        </nav>
         <a href="#contact" className="btn btn--primary btn--header">
           Me contacter
         </a>
