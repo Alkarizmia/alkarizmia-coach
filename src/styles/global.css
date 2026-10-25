@@ -518,22 +518,13 @@ ul {
   box-shadow: var(--shadow);
 }
 
-.explainer__embed,
-.explainer__host,
-.explainer__iframe,
-.explainer__embed iframe {
-  position: absolute !important;
-  inset: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
-  max-width: none !important;
-  border: 0 !important;
-}
-
-/* Couvre le chrome YouTube : on ne clique jamais l’iframe */
-.explainer__embed {
-  pointer-events: none;
-  z-index: 0;
+.explainer__iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #111;
 }
 
 .explainer__poster {
@@ -544,27 +535,22 @@ ul {
   height: 100%;
   object-fit: cover;
   pointer-events: none;
-  transition: opacity 220ms ease;
 }
 
-.explainer__poster.is-hidden {
-  opacity: 0;
-  visibility: hidden;
-}
-
-.explainer__frame.is-playing .explainer__embed {
-  z-index: 1;
-}
-
+/* Bouton play : icône seule, pas de calque plein cadre */
 .explainer__toggle {
   position: absolute;
-  inset: 0;
+  top: 50%;
+  left: 50%;
   z-index: 2;
-  display: grid;
-  place-items: center;
+  width: 4rem;
+  height: 4rem;
   margin: 0;
   padding: 0;
   border: 0;
+  transform: translate(-50%, -50%);
+  display: grid;
+  place-items: center;
   background: transparent;
   cursor: pointer;
   color: #fff;
@@ -584,45 +570,13 @@ ul {
   background: rgba(20, 22, 28, 0.72);
   transition:
     transform var(--transition),
-    background-color var(--transition),
-    opacity var(--transition);
+    background-color var(--transition);
 }
 
 .explainer__toggle:hover .explainer__icon,
 .explainer__toggle:focus-visible .explainer__icon {
   background: rgba(31, 77, 63, 0.92);
   transform: scale(1.04);
-}
-
-/*
-  En lecture : ne plus couvrir toute la vidéo d’un calque transparent
-  (ça peut faire disparaître l’image YouTube tout en gardant le son).
-  Seule la petite icône pause reste cliquable.
-*/
-.explainer__frame.is-playing .explainer__toggle {
-  inset: auto;
-  top: 50%;
-  left: 50%;
-  width: 4rem;
-  height: 4rem;
-  transform: translate(-50%, -50%);
-  opacity: 0;
-}
-
-.explainer__frame.is-playing:hover .explainer__toggle,
-.explainer__frame.is-playing:focus-within .explainer__toggle {
-  opacity: 1;
-}
-
-.explainer__frame.is-playing .explainer__toggle:hover .explainer__icon,
-.explainer__frame.is-playing .explainer__toggle:focus-visible .explainer__icon {
-  transform: none;
-}
-
-@media (hover: none) {
-  .explainer__frame.is-playing .explainer__toggle {
-    opacity: 0.9;
-  }
 }
 
 /* Maquette navigateur animée */
