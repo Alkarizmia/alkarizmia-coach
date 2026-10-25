@@ -4,6 +4,7 @@
 import { useEffect } from "react";
 import Header from "./components/Header.jsx";
 import Hero from "./components/Hero.jsx";
+import ExplainerVideo from "./components/ExplainerVideo.jsx";
 import Offres from "./components/Offres.jsx";
 import Processus from "./components/Processus.jsx";
 import Realisations from "./components/Realisations.jsx";
@@ -22,6 +23,7 @@ export default function App() {
       <Header />
       <main>
         <Hero />
+        <ExplainerVideo />
         <Offres />
         <Processus />
         <Realisations />
