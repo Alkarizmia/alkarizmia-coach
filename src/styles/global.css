@@ -321,6 +321,14 @@ ul {
   color: var(--color-text);
   letter-spacing: -0.02em;
   text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.site-header__mark {
+  width: 28px;
+  height: 28px;
 }
 
 .site-header__brand:hover {
