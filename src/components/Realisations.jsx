@@ -25,7 +25,7 @@ export default function Realisations() {
   return (
     <section
       id="realisations"
-      className="section"
+      className="section section-tone section-tone--mist"
       aria-labelledby="realisations-title"
     >
       <div className="container">

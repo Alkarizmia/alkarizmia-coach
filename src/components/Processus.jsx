@@ -74,7 +74,11 @@ export default function Processus() {
   const day = clamp(Math.round(1 + progress * (TOTAL_DAYS - 1)), 1, TOTAL_DAYS);
 
   return (
-    <section id="processus" className="section" aria-labelledby="processus-title">
+    <section
+      id="processus"
+      className="section section-tone section-tone--soft"
+      aria-labelledby="processus-title"
+    >
       <div className="container">
         <h2 id="processus-title" data-reveal>
           Comment ça se passe

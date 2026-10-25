@@ -3,7 +3,11 @@ import { FAQ_ITEMS } from "../content/faq.js";
 /** FAQ — accordéon (details / summary, sans JS) */
 export default function Faq() {
   return (
-    <section id="faq" className="section" aria-labelledby="faq-title">
+    <section
+      id="faq"
+      className="section section-tone section-tone--sand"
+      aria-labelledby="faq-title"
+    >
       <div className="container faq__grid">
         <div className="faq__intro">
           <p className="section__eyebrow" data-reveal>

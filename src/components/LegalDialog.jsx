@@ -148,14 +148,6 @@ export default function LegalDialog() {
               supprimés.
             </p>
 
-            <h3>Vidéo YouTube</h3>
-            <p>
-              La vidéo de présentation est hébergée par YouTube (Google). Elle
-              n'est chargée que lorsque vous cliquez sur lecture, en mode
-              « confidentialité renforcée » ; YouTube peut alors déposer ses
-              propres cookies.
-            </p>
-
             <h3>Vos droits</h3>
             <p>
               Conformément au RGPD, vous pouvez demander l'accès, la correction

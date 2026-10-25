@@ -34,7 +34,11 @@ export default function Offres() {
   const matched = match?.replace(" +", "");
 
   return (
-    <section id="offres" className="section" aria-labelledby="formules-title">
+    <section
+      id="offres"
+      className="section section-tone section-tone--surface"
+      aria-labelledby="formules-title"
+    >
       <div className="container">
         <p className="section__eyebrow formules__intro" data-reveal>
           Tarifs de lancement pour mes premiers clients.

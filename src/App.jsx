@@ -20,6 +20,12 @@ export default function App() {
 
   return (
     <>
+      <div className="page-ambiance" aria-hidden="true">
+        <span className="page-ambiance__blob page-ambiance__blob--a" />
+        <span className="page-ambiance__blob page-ambiance__blob--b" />
+        <span className="page-ambiance__blob page-ambiance__blob--c" />
+        <span className="page-ambiance__grain" />
+      </div>
       <Seo />
       <Header />
       <main>

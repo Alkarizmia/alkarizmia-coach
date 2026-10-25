@@ -16,7 +16,11 @@ const FACTS = [
 /** À propos — portrait + texte + chiffres clés */
 export default function APropos() {
   return (
-    <section id="a-propos" className="section about" aria-labelledby="apropos-title">
+    <section
+      id="a-propos"
+      className="section about section-tone section-tone--surface"
+      aria-labelledby="apropos-title"
+    >
       <div className="container about__grid">
         <div className="about__portrait" data-reveal>
           {PHOTO ? (
