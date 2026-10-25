@@ -1,4 +1,4 @@
-import { useEffect, useId, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const YOUTUBE_ID = "R8QUA1m6yS0";
 const THUMB = `https://i.ytimg.com/vi/${YOUTUBE_ID}/hqdefault.jpg`;
@@ -27,26 +27,35 @@ function loadYouTubeApi() {
 }
 
 /**
- * Explainer — YouTube sans chrome : uniquement icône play/pause custom.
+ * Explainer — YouTube sans chrome, play/pause custom.
+ * Le mount YouTube est hors du reconciler React (sinon l’iframe disparaît au play).
  */
 export default function ExplainerVideo() {
-  const uid = useId().replace(/:/g, "");
-  const hostId = `explainer-yt-${uid}`;
+  const mountRef = useRef(null);
   const playerRef = useRef(null);
   const [playing, setPlaying] = useState(false);
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
+    const shell = mountRef.current;
+    if (!shell) return undefined;
+
     let cancelled = false;
     let player;
+
+    /* Conteneur impératif : React ne le recrée jamais */
+    const mount = document.createElement("div");
+    mount.className = "explainer__host";
+    shell.appendChild(mount);
 
     loadYouTubeApi().then((YT) => {
       if (cancelled) return;
 
-      player = new YT.Player(hostId, {
+      player = new YT.Player(mount, {
         videoId: YOUTUBE_ID,
         width: "100%",
         height: "100%",
+        host: "https://www.youtube.com",
         playerVars: {
           autoplay: 0,
           controls: 0,
@@ -56,18 +65,20 @@ export default function ExplainerVideo() {
           modestbranding: 1,
           playsinline: 1,
           rel: 0,
-          showinfo: 0,
-          cc_load_policy: 0,
-          // hint qualité (YouTube décide encore, mais pousse HD si dispo)
-          vq: "hd720",
+          origin: window.location.origin,
         },
         events: {
           onReady: (event) => {
             playerRef.current = event.target;
+            const iframe = event.target.getIframe?.();
+            if (iframe) {
+              iframe.classList.add("explainer__iframe");
+              iframe.setAttribute("allow", "accelerometer; autoplay; encrypted-media; picture-in-picture");
+            }
             try {
               event.target.setPlaybackQuality?.("hd720");
             } catch {
-              /* API qualité souvent ignorée */
+              /* ignore */
             }
             setReady(true);
           },
@@ -75,11 +86,6 @@ export default function ExplainerVideo() {
             const state = event.data;
             if (state === YT.PlayerState.PLAYING) {
               setPlaying(true);
-              try {
-                event.target.setPlaybackQuality?.("hd720");
-              } catch {
-                /* ignore */
-              }
             } else if (
               state === YT.PlayerState.PAUSED ||
               state === YT.PlayerState.ENDED ||
@@ -100,8 +106,9 @@ export default function ExplainerVideo() {
         /* ignore */
       }
       playerRef.current = null;
+      shell.replaceChildren();
     };
-  }, [hostId]);
+  }, []);
 
   const toggle = () => {
     const player = playerRef.current;
@@ -131,18 +138,14 @@ export default function ExplainerVideo() {
           className={`explainer__frame${playing ? " is-playing" : ""}`}
           data-reveal
         >
-          <div className="explainer__embed" aria-hidden={playing ? "false" : "true"}>
-            <div id={hostId} className="explainer__host" />
-          </div>
+          <div ref={mountRef} className="explainer__embed" />
 
-          {!playing && (
-            <img
-              className="explainer__poster"
-              src={THUMB}
-              alt=""
-              decoding="async"
-            />
-          )}
+          <img
+            className={`explainer__poster${playing ? " is-hidden" : ""}`}
+            src={THUMB}
+            alt=""
+            decoding="async"
+          />
 
           <button
             type="button"

@@ -514,18 +514,20 @@ ul {
   overflow: hidden;
   border-radius: var(--radius);
   border: 1px solid var(--color-border);
-  background: #000;
+  background: #111;
   box-shadow: var(--shadow);
 }
 
 .explainer__embed,
 .explainer__host,
-.explainer__host iframe {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
+.explainer__iframe,
+.explainer__embed iframe {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  border: 0 !important;
 }
 
 /* Couvre le chrome YouTube : on ne clique jamais l’iframe */
@@ -542,6 +544,11 @@ ul {
   height: 100%;
   object-fit: cover;
   pointer-events: none;
+  transition: opacity 220ms ease;
+}
+
+.explainer__poster.is-hidden {
+  opacity: 0;
 }
 
 .explainer__toggle {
