@@ -27,16 +27,16 @@ export const CONTACT = {
 export const PROJECTS = [
   {
     name: "ScanPlay",
-    url: "",
-    domain: "scanplay",
+    url: "https://scanplay.org",
+    domain: "scanplay.org",
     tag: "Application web",
     text: "Une interface pensée pour le téléphone : on scanne, on joue, sans rien installer.",
     accent: "#1f4d3f",
   },
   {
     name: "PayPulss",
-    url: "",
-    domain: "paypulss",
+    url: "https://paypulss.com",
+    domain: "paypulss.com",
     tag: "Site produit",
     text: "Une page claire qui présente le produit et pousse à l'action en quelques secondes.",
     accent: "#b5654a",
