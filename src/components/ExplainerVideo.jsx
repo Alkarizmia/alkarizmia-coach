@@ -1,5 +1,9 @@
 /**
- * Explainer — audio de présentation, placé juste sous le hero.
+ * Explainer — vidéo de présentation, placée juste sous le hero.
+ *
+ * Fichier à placer manuellement :
+ *   public/videos/explainer.mp4
+ * (copie ton WhatsApp / Desktop .mp4 et renomme-le explainer.mp4)
  */
 export default function ExplainerVideo() {
   return (
@@ -10,7 +14,7 @@ export default function ExplainerVideo() {
     >
       <div className="container explainer__inner">
         <p className="section__eyebrow" data-reveal>
-          En écoute
+          En images
         </p>
         <h2 id="explainer-title" className="section__title" data-reveal>
           Alkarizmia, en un clin d'œil
@@ -19,17 +23,17 @@ export default function ExplainerVideo() {
           Une présentation courte de l'identité derrière vos sites de coach.
         </p>
 
-        <div className="explainer__player" data-reveal>
-          <audio
-            className="explainer__audio"
-            src="/audio/explainer.mp3"
+        <div className="explainer__frame" data-reveal>
+          <video
+            className="explainer__video"
+            src="/videos/explainer.mp4"
             controls
+            playsInline
             preload="metadata"
-            controlsList="nodownload"
-            aria-label="Présentation audio Alkarizmia"
+            aria-label="Vidéo de présentation Alkarizmia"
           >
-            Votre navigateur ne prend pas en charge la lecture audio.
-          </audio>
+            Votre navigateur ne prend pas en charge la lecture vidéo.
+          </video>
         </div>
       </div>
     </section>
