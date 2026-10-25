@@ -523,6 +523,20 @@ ul {
   vertical-align: middle;
 }
 
+.explainer__missing {
+  margin: 0;
+  padding: var(--space-5) var(--space-3);
+  color: #e8e0d2;
+  font-size: 0.9375rem;
+  max-width: none;
+}
+
+.explainer__missing code {
+  font-family: ui-monospace, monospace;
+  font-size: 0.875rem;
+  color: #fff;
+}
+
 /* Maquette navigateur animée */
 .browser-mock {
   position: relative;

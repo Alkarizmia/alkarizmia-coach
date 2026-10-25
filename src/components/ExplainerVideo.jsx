@@ -1,11 +1,12 @@
+import { useState } from "react";
+
 /**
- * Explainer — vidéo de présentation, placée juste sous le hero.
- *
- * Fichier à placer manuellement :
- *   public/videos/explainer.mp4
- * (copie ton WhatsApp / Desktop .mp4 et renomme-le explainer.mp4)
+ * Explainer — vidéo sous le hero.
+ * Fichier attendu : public/videos/explainer.mp4
  */
 export default function ExplainerVideo() {
+  const [missing, setMissing] = useState(false);
+
   return (
     <section
       id="explainer"
@@ -24,16 +25,25 @@ export default function ExplainerVideo() {
         </p>
 
         <div className="explainer__frame" data-reveal>
-          <video
-            className="explainer__video"
-            src="/videos/explainer.mp4"
-            controls
-            playsInline
-            preload="metadata"
-            aria-label="Vidéo de présentation Alkarizmia"
-          >
-            Votre navigateur ne prend pas en charge la lecture vidéo.
-          </video>
+          {missing ? (
+            <p className="explainer__missing">
+              Vidéo manquante : place{" "}
+              <code>explainer.mp4</code> dans{" "}
+              <code>public/videos/</code>
+            </p>
+          ) : (
+            <video
+              className="explainer__video"
+              src="/videos/explainer.mp4"
+              controls
+              playsInline
+              preload="metadata"
+              aria-label="Vidéo de présentation Alkarizmia"
+              onError={() => setMissing(true)}
+            >
+              Votre navigateur ne prend pas en charge la lecture vidéo.
+            </video>
+          )}
         </div>
       </div>
     </section>
