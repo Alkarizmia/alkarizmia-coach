@@ -594,19 +594,34 @@ ul {
   transform: scale(1.04);
 }
 
-/* En lecture : icône discrète, visible au survol */
-.explainer__frame.is-playing .explainer__icon {
+/*
+  En lecture : ne plus couvrir toute la vidéo d’un calque transparent
+  (ça peut faire disparaître l’image YouTube tout en gardant le son).
+  Seule la petite icône pause reste cliquable.
+*/
+.explainer__frame.is-playing .explainer__toggle {
+  inset: auto;
+  top: 50%;
+  left: 50%;
+  width: 4rem;
+  height: 4rem;
+  transform: translate(-50%, -50%);
   opacity: 0;
 }
 
-.explainer__frame.is-playing:hover .explainer__icon,
-.explainer__frame.is-playing:focus-within .explainer__icon {
+.explainer__frame.is-playing:hover .explainer__toggle,
+.explainer__frame.is-playing:focus-within .explainer__toggle {
   opacity: 1;
 }
 
+.explainer__frame.is-playing .explainer__toggle:hover .explainer__icon,
+.explainer__frame.is-playing .explainer__toggle:focus-visible .explainer__icon {
+  transform: none;
+}
+
 @media (hover: none) {
-  .explainer__frame.is-playing .explainer__icon {
-    opacity: 0.85;
+  .explainer__frame.is-playing .explainer__toggle {
+    opacity: 0.9;
   }
 }
 
