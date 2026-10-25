@@ -484,6 +484,59 @@ ul {
   max-width: none;
 }
 
+/* —— Explainer vidéo (sous le hero) —— */
+.explainer {
+  padding-top: 0;
+}
+
+.explainer__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.explainer__inner .section__eyebrow,
+.explainer__inner .section__title {
+  text-align: center;
+}
+
+.explainer__lead {
+  margin: 0 auto var(--space-4);
+  max-width: 36ch;
+  text-align: center;
+}
+
+.explainer__frame {
+  width: min(100%, 36rem);
+  overflow: hidden;
+  border-radius: var(--radius);
+  border: 1px solid var(--color-border);
+  background: #000;
+  box-shadow: var(--shadow);
+}
+
+.explainer__video {
+  display: block;
+  width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+.explainer__missing {
+  margin: 0;
+  padding: var(--space-5) var(--space-3);
+  color: #e8e0d2;
+  font-size: 0.9375rem;
+  max-width: none;
+}
+
+.explainer__missing code {
+  font-family: ui-monospace, monospace;
+  font-size: 0.875rem;
+  color: #fff;
+}
+
 /* Maquette navigateur animée */
 .browser-mock {
   position: relative;
