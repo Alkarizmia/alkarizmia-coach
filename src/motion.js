@@ -9,11 +9,15 @@ export function prefersReducedMotion() {
   return window.matchMedia(REDUCE_QUERY).matches;
 }
 
-/** Apparition au scroll — une seule fois, stagger 80 ms */
+/**
+ * Apparition au scroll — une seule fois, stagger 80 ms.
+ * Marque via l'attribut data-revealed (et non une classe) : React réécrit
+ * className à chaque mise à jour et effacerait une classe ajoutée ici.
+ */
 export function initScrollReveal(root = document) {
   if (prefersReducedMotion()) {
     root.querySelectorAll("[data-reveal]").forEach((el) => {
-      el.classList.add("is-revealed");
+      el.dataset.revealed = "";
     });
     return () => {};
   }
@@ -36,7 +40,7 @@ export function initScrollReveal(root = document) {
     (entries) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
-        entry.target.classList.add("is-revealed");
+        entry.target.dataset.revealed = "";
         observer.unobserve(entry.target);
       });
     },
