@@ -1,12 +1,9 @@
-import { useState } from "react";
+const YOUTUBE_ID = "R8QUA1m6yS0";
 
 /**
- * Explainer — vidéo sous le hero.
- * Fichier attendu : public/videos/explainer.mp4
+ * Explainer — vidéo YouTube sous le hero.
  */
 export default function ExplainerVideo() {
-  const [missing, setMissing] = useState(false);
-
   return (
     <section
       id="explainer"
@@ -25,25 +22,14 @@ export default function ExplainerVideo() {
         </p>
 
         <div className="explainer__frame" data-reveal>
-          {missing ? (
-            <p className="explainer__missing">
-              Vidéo manquante : place{" "}
-              <code>explainer.mp4</code> dans{" "}
-              <code>public/videos/</code>
-            </p>
-          ) : (
-            <video
-              className="explainer__video"
-              src="/videos/explainer.mp4"
-              controls
-              playsInline
-              preload="metadata"
-              aria-label="Vidéo de présentation Alkarizmia"
-              onError={() => setMissing(true)}
-            >
-              Votre navigateur ne prend pas en charge la lecture vidéo.
-            </video>
-          )}
+          <iframe
+            className="explainer__video"
+            src={`https://www.youtube.com/embed/${YOUTUBE_ID}`}
+            title="Vidéo de présentation Alkarizmia"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
+          />
         </div>
       </div>
     </section>
