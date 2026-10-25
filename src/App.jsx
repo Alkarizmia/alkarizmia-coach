@@ -4,7 +4,6 @@
 import { useEffect } from "react";
 import Header from "./components/Header.jsx";
 import Hero from "./components/Hero.jsx";
-import ExplainerVideo from "./components/ExplainerVideo.jsx";
 import Offres from "./components/Offres.jsx";
 import Processus from "./components/Processus.jsx";
 import Realisations from "./components/Realisations.jsx";
@@ -13,6 +12,7 @@ import Faq from "./components/Faq.jsx";
 import Contact from "./components/Contact.jsx";
 import Footer from "./components/Footer.jsx";
 import MobileContactBar from "./components/MobileContactBar.jsx";
+import Seo from "./components/Seo.jsx";
 import { initScrollReveal } from "./motion.js";
 
 export default function App() {
@@ -20,10 +20,10 @@ export default function App() {
 
   return (
     <>
+      <Seo />
       <Header />
       <main>
         <Hero />
-        <ExplainerVideo />
         <Offres />
         <Processus />
         <Realisations />

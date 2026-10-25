@@ -107,7 +107,23 @@ export default function Estimator({ onResult }) {
       className={`estimator${open ? " is-open" : ""}`}
       data-reveal
     >
-      <div className="estimator__teaser">
+      <div
+        className="estimator__teaser"
+        onClick={!open ? start : undefined}
+        onKeyDown={
+          !open
+            ? (e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  start();
+                }
+              }
+            : undefined
+        }
+        role={!open ? "button" : undefined}
+        tabIndex={!open ? 0 : undefined}
+        aria-label={!open ? "Estimer mon site" : undefined}
+      >
         <div className="estimator__teaser-copy">
           <p className="estimator__kicker">Pas sûr de la formule ?</p>
           <p className="estimator__headline">
@@ -115,7 +131,14 @@ export default function Estimator({ onResult }) {
           </p>
         </div>
         {!open && (
-          <button type="button" className="btn btn--on-dark" onClick={start}>
+          <button
+            type="button"
+            className="btn btn--on-dark"
+            onClick={(e) => {
+              e.stopPropagation();
+              start();
+            }}
+          >
             Estimer mon site
             <span aria-hidden="true">→</span>
           </button>

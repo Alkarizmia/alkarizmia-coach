@@ -1384,6 +1384,23 @@ ul {
   background: var(--color-dark);
   color: var(--est-text);
   isolation: isolate;
+  transition:
+    transform 200ms ease,
+    box-shadow 200ms ease;
+}
+
+/* Bandeau fermé : réaction claire au survol */
+.estimator:not(.is-open) {
+  cursor: pointer;
+}
+
+.estimator:not(.is-open):hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 36px rgba(20, 22, 28, 0.2);
+}
+
+.estimator:not(.is-open):active {
+  transform: translateY(-1px);
 }
 
 /* Trame de points + halo vert, rappel du hero */
@@ -1434,12 +1451,32 @@ ul {
   text-wrap: balance;
 }
 
-.estimator__teaser .btn span {
-  transition: transform var(--transition);
+.estimator__teaser .btn {
+  transition:
+    transform 200ms ease,
+    background-color 200ms ease,
+    box-shadow 200ms ease;
 }
 
+.estimator__teaser .btn span {
+  display: inline-block;
+  transition: transform 200ms ease;
+}
+
+.estimator:not(.is-open):hover .estimator__teaser .btn,
+.estimator__teaser .btn:hover {
+  transform: scale(1.05);
+  background: #ffffff;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+}
+
+.estimator:not(.is-open):hover .estimator__teaser .btn span,
 .estimator__teaser .btn:hover span {
-  transform: translateX(4px);
+  transform: translateX(6px);
+}
+
+.estimator__teaser .btn:active {
+  transform: scale(1.02);
 }
 
 .estimator__panel {
@@ -1775,6 +1812,18 @@ ul {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .estimator,
+  .estimator:not(.is-open):hover,
+  .estimator:not(.is-open):active,
+  .estimator__teaser .btn,
+  .estimator:not(.is-open):hover .estimator__teaser .btn,
+  .estimator__teaser .btn:hover,
+  .estimator__teaser .btn span {
+    transform: none;
+    transition: none;
+    box-shadow: none;
+  }
+
   .estimator__panel,
   .estimator__step,
   .estimator__result,
