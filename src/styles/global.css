@@ -67,6 +67,7 @@ body {
   color: var(--color-text);
   background-color: var(--color-bg);
   -webkit-font-smoothing: antialiased;
+  padding-top: var(--header-h);
   padding-bottom: var(--mobile-bar-h);
   position: relative;
 }
@@ -441,28 +442,40 @@ ul {
   }
 }
 
-/* —— Header glass —— */
+/* —— Header glass (fixed = backdrop-filter fiable en prod) —— */
 .site-header {
-  position: sticky;
+  position: fixed;
   top: 0;
-  z-index: 50;
+  left: 0;
+  right: 0;
+  z-index: 200;
   height: var(--header-h);
   display: flex;
   align-items: center;
-  background-color: rgba(247, 244, 238, 0.58);
-  border-bottom: 1px solid rgba(230, 224, 212, 0.45);
-  backdrop-filter: blur(18px) saturate(1.25);
-  -webkit-backdrop-filter: blur(18px) saturate(1.25);
+  /* Fond semi-transparent obligatoire pour voir le flou */
+  background: rgba(255, 255, 255, 0.42);
+  border-bottom: 1px solid rgba(230, 224, 212, 0.55);
+  backdrop-filter: blur(22px) saturate(1.4);
+  -webkit-backdrop-filter: blur(22px) saturate(1.4);
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
   transition:
-    background-color 200ms ease,
+    background 200ms ease,
     border-color 200ms ease,
     box-shadow 200ms ease;
 }
 
 .site-header.is-scrolled {
-  background-color: rgba(247, 244, 238, 0.78);
-  border-bottom-color: rgba(230, 224, 212, 0.85);
-  box-shadow: 0 8px 28px rgba(20, 22, 28, 0.05);
+  background: rgba(247, 244, 238, 0.72);
+  border-bottom-color: rgba(230, 224, 212, 0.9);
+  box-shadow: 0 10px 32px rgba(20, 22, 28, 0.07);
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .site-header,
+  .site-header.is-scrolled {
+    background: rgba(247, 244, 238, 0.94);
+  }
 }
 
 .site-header .container {
