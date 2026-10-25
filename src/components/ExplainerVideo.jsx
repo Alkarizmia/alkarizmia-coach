@@ -35,6 +35,7 @@ export default function ExplainerVideo() {
   const playerRef = useRef(null);
   const [playing, setPlaying] = useState(false);
   const [ready, setReady] = useState(false);
+  const pendingPlayRef = useRef(false);
 
   useEffect(() => {
     const shell = mountRef.current;
@@ -73,7 +74,10 @@ export default function ExplainerVideo() {
             const iframe = event.target.getIframe?.();
             if (iframe) {
               iframe.classList.add("explainer__iframe");
-              iframe.setAttribute("allow", "accelerometer; autoplay; encrypted-media; picture-in-picture");
+              iframe.setAttribute(
+                "allow",
+                "accelerometer; autoplay; encrypted-media; picture-in-picture; fullscreen"
+              );
             }
             try {
               event.target.setPlaybackQuality?.("hd720");
@@ -81,6 +85,10 @@ export default function ExplainerVideo() {
               /* ignore */
             }
             setReady(true);
+            if (pendingPlayRef.current) {
+              pendingPlayRef.current = false;
+              event.target.playVideo();
+            }
           },
           onStateChange: (event) => {
             const state = event.data;
@@ -112,7 +120,10 @@ export default function ExplainerVideo() {
 
   const toggle = () => {
     const player = playerRef.current;
-    if (!player || !ready) return;
+    if (!player || !ready) {
+      pendingPlayRef.current = true;
+      return;
+    }
     if (playing) player.pauseVideo();
     else player.playVideo();
   };
@@ -151,7 +162,6 @@ export default function ExplainerVideo() {
             type="button"
             className="explainer__toggle"
             onClick={toggle}
-            disabled={!ready}
             aria-label={playing ? "Mettre en pause" : "Lire la vidéo"}
           >
             <span className="explainer__icon" aria-hidden="true">

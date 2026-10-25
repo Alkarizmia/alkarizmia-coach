@@ -549,6 +549,11 @@ ul {
 
 .explainer__poster.is-hidden {
   opacity: 0;
+  visibility: hidden;
+}
+
+.explainer__frame.is-playing .explainer__embed {
+  z-index: 1;
 }
 
 .explainer__toggle {
@@ -563,10 +568,6 @@ ul {
   background: transparent;
   cursor: pointer;
   color: #fff;
-}
-
-.explainer__toggle:disabled {
-  cursor: wait;
 }
 
 .explainer__toggle:focus-visible .explainer__icon {
