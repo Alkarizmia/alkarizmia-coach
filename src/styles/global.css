@@ -508,6 +508,7 @@ ul {
 }
 
 .explainer__frame {
+  position: relative;
   width: min(100%, 40rem);
   aspect-ratio: 16 / 9;
   overflow: hidden;
@@ -517,11 +518,88 @@ ul {
   box-shadow: var(--shadow);
 }
 
-.explainer__video {
-  display: block;
+.explainer__embed,
+.explainer__host,
+.explainer__host iframe {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   border: 0;
+}
+
+/* Couvre le chrome YouTube : on ne clique jamais l’iframe */
+.explainer__embed {
+  pointer-events: none;
+  z-index: 0;
+}
+
+.explainer__poster {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.explainer__toggle {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  color: #fff;
+}
+
+.explainer__toggle:disabled {
+  cursor: wait;
+}
+
+.explainer__toggle:focus-visible .explainer__icon {
+  outline: 2px solid #fff;
+  outline-offset: 4px;
+}
+
+.explainer__icon {
+  display: grid;
+  place-items: center;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 999px;
+  background: rgba(20, 22, 28, 0.72);
+  transition:
+    transform var(--transition),
+    background-color var(--transition),
+    opacity var(--transition);
+}
+
+.explainer__toggle:hover .explainer__icon,
+.explainer__toggle:focus-visible .explainer__icon {
+  background: rgba(31, 77, 63, 0.92);
+  transform: scale(1.04);
+}
+
+/* En lecture : icône discrète, visible au survol */
+.explainer__frame.is-playing .explainer__icon {
+  opacity: 0;
+}
+
+.explainer__frame.is-playing:hover .explainer__icon,
+.explainer__frame.is-playing:focus-within .explainer__icon {
+  opacity: 1;
+}
+
+@media (hover: none) {
+  .explainer__frame.is-playing .explainer__icon {
+    opacity: 0.85;
+  }
 }
 
 /* Maquette navigateur animée */
