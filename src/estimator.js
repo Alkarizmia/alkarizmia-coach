@@ -50,7 +50,7 @@ export const QUESTIONS = [
     options: [
       { value: "reservation", label: "Réservation en ligne", hint: "≈ +60 €" },
       { value: "textes", label: "J'aimerais qu'on rédige mes textes", hint: "≈ +90 €", short: "rédaction des textes" },
-      { value: "suivi", label: "Suivi mensuel", hint: "39 €/mois" },
+      { value: "suivi", label: "Suivi mensuel", hint: "39 €/mois · mises à jour, 2 modifications/mois · 6 mois min." },
     ],
   },
 ];

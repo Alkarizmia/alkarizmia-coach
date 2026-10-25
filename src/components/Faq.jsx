@@ -14,7 +14,7 @@ const QUESTIONS = [
   },
   {
     q: "Puis-je demander des modifications après livraison ?",
-    a: "Oui. Avec le suivi mensuel (39 €/mois), deux petites modifications par mois sont incluses, ainsi que les mises à jour et les vérifications. Sans suivi, chaque modification est chiffrée à l'avance, au cas par cas.",
+    a: "Oui. Avec le suivi mensuel (39 €/mois), deux petites modifications par mois sont incluses, ainsi que les mises à jour et les vérifications (6 mois minimum, puis préavis de 30 jours). Sans suivi, chaque modification est chiffrée à l'avance, au cas par cas.",
   },
   {
     q: "Je n'ai pas de photos ni de textes. C'est un problème ?",

@@ -2,7 +2,7 @@ import { useState } from "react";
 import Estimator from "./Estimator.jsx";
 
 /**
- * Formules — 3 cartes, simulateur de prix, option suivi mensuel.
+ * Formules — 3 cartes + simulateur de prix (le suivi mensuel y est proposé).
  * (Fichier conservé : Offres.jsx — arborescence inchangée.)
  */
 const FORMULES = [
@@ -69,17 +69,6 @@ export default function Offres() {
 
         <Estimator onResult={setMatch} />
 
-        <div className="formules-option" data-reveal>
-          <p className="formules-option__label">Option</p>
-          <p>
-            Suivi mensuel, 39 €/mois : mises à jour, 2 petites modifications par
-            mois, vérifications. 6 mois minimum, puis préavis de 30 jours.
-          </p>
-          <p className="formules-note">
-            Domaine et hébergement à votre nom (environ dix euros par an pour le
-            domaine).
-          </p>
-        </div>
       </div>
     </section>
   );
