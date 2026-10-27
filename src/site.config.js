@@ -18,7 +18,7 @@ export const OWNER = {
 };
 
 export const CONTACT = {
-  email: "elfahmi.bilal18@gmail.com",
+  email: "contact@alkarizmia.com",
   whatsappNumber: "32487870477",
   whatsappDisplay: "+32 487 87 04 77",
 };
