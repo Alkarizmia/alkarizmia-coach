@@ -76,7 +76,7 @@ export default function Processus() {
   return (
     <section
       id="processus"
-      className="section section-tone section-tone--soft"
+      className="section section-tone section-tone--soft section-tone--arcs"
       aria-labelledby="processus-title"
     >
       <div className="container">

@@ -32,7 +32,7 @@ export function initScrollReveal(root = document) {
 
   groups.forEach((els) => {
     els.forEach((el, i) => {
-      el.style.setProperty("--reveal-delay", `${i * 80}ms`);
+      el.style.setProperty("--reveal-delay", `${i * 60}ms`);
     });
   });
 

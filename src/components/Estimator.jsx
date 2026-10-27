@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { QUESTIONS, buildMessage, estimate } from "../estimator.js";
 import { mailtoLink, whatsappLink } from "../site.config.js";
 import { prefersReducedMotion } from "../motion.js";
+import { trackEvent } from "../analytics.js";
 
 /** Compteur animé du prix (respecte prefers-reduced-motion) */
 function useCountUp(target, active) {
@@ -38,17 +39,34 @@ export default function Estimator({ onResult }) {
   const [business, setBusiness] = useState("");
   const headingRef = useRef(null);
   const panelRef = useRef(null);
+  const completeTracked = useRef(false);
 
   const done = step >= QUESTIONS.length;
   const question = QUESTIONS[step];
   const result = done ? estimate(answers) : null;
   const shown = useCountUp(result?.total ?? 0, done);
 
-  const formule = result ? result.formule : null;
+  const formule = result?.formule ?? null;
+  const total = result?.total ?? null;
 
   useEffect(() => {
-    onResult?.(formule);
-  }, [formule, onResult]);
+    onResult?.(formule != null ? { formule, total } : null);
+  }, [formule, total, onResult]);
+
+  useEffect(() => {
+    if (!done || !result) {
+      completeTracked.current = false;
+      return;
+    }
+    if (completeTracked.current) return;
+    completeTracked.current = true;
+    trackEvent("estimator_complete", {
+      formule: result.formule,
+      value: result.total,
+      currency: "EUR",
+      days: result.days,
+    });
+  }, [done, result]);
 
   useEffect(() => {
     if (open) headingRef.current?.focus({ preventScroll: true });
@@ -66,6 +84,7 @@ export default function Estimator({ onResult }) {
 
   const start = () => {
     setOpen(true);
+    trackEvent("estimator_open");
     requestAnimationFrame(() => {
       panelRef.current?.scrollIntoView({
         behavior: prefersReducedMotion() ? "auto" : "smooth",
@@ -87,11 +106,17 @@ export default function Estimator({ onResult }) {
       });
       return;
     }
+    trackEvent("estimator_answer", {
+      question_id: question.id,
+      answer: value,
+      step: step + 1,
+    });
     setAnswers((prev) => ({ ...prev, [question.id]: value }));
     window.setTimeout(() => setStep((s) => s + 1), 220);
   };
 
   const restart = () => {
+    trackEvent("estimator_restart");
     setAnswers({ options: [] });
     setStep(0);
   };
@@ -209,7 +234,14 @@ export default function Estimator({ onResult }) {
                 <button
                   type="button"
                   className="btn btn--on-dark"
-                  onClick={() => setStep((s) => s + 1)}
+                  onClick={() => {
+                    trackEvent("estimator_answer", {
+                      question_id: question.id,
+                      answer: (answers[question.id] ?? []).join(",") || "none",
+                      step: step + 1,
+                    });
+                    setStep((s) => s + 1);
+                  }}
                 >
                   {(answers[question.id] ?? []).length
                     ? "Voir mon estimation"
@@ -306,6 +338,13 @@ export default function Estimator({ onResult }) {
                   href={whatsappLink(message)}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() =>
+                    trackEvent("cta_whatsapp", {
+                      location: "estimator",
+                      formule: result.formule,
+                      value: result.total,
+                    })
+                  }
                 >
                   <svg viewBox="0 0 24 24" aria-hidden="true" width="20" height="20">
                     <path
@@ -318,6 +357,13 @@ export default function Estimator({ onResult }) {
                 <a
                   className="btn btn--ghost-dark"
                   href={mailtoLink(subject, message)}
+                  onClick={() =>
+                    trackEvent("cta_email", {
+                      location: "estimator",
+                      formule: result.formule,
+                      value: result.total,
+                    })
+                  }
                 >
                   Envoyer par e-mail
                 </a>

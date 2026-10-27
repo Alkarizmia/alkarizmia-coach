@@ -23,6 +23,10 @@ export const CONTACT = {
   whatsappDisplay: "+32 487 87 04 77",
 };
 
+/** Message prérempli pour réserver l'échange de 15 minutes */
+export const BOOKING_MESSAGE =
+  "Bonjour Bilal, je voudrais réserver un échange gratuit de 15 minutes pour parler de mon site.";
+
 /** Liens des réalisations — mettre l'adresse du site en ligne ("" = pas de bouton) */
 export const PROJECTS = [
   {
@@ -60,4 +64,8 @@ export function mailtoLink(subject = "", body = "") {
   if (subject) params.push(`subject=${encodeURIComponent(subject)}`);
   if (body) params.push(`body=${encodeURIComponent(body)}`);
   return `mailto:${CONTACT.email}${params.length ? `?${params.join("&")}` : ""}`;
+}
+
+export function telLink() {
+  return `tel:+${CONTACT.whatsappNumber}`;
 }

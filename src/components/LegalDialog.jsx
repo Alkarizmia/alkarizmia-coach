@@ -133,10 +133,16 @@ export default function LegalDialog() {
           <div className="legal__body" role="tabpanel">
             <h3>Données collectées</h3>
             <p>
-              Ce site n'a ni formulaire, ni compte, ni cookie publicitaire ou de
-              mesure d'audience. Le simulateur de prix fonctionne entièrement
-              dans votre navigateur : vos réponses ne sont envoyées à personne
-              tant que vous ne cliquez pas sur WhatsApp ou E-mail.
+              Ce site n'a ni formulaire ni compte. Avec votre accord (bannière
+              cookies), j'utilise Google Analytics (G-LS6R68NH17) pour mesurer
+              l'audience de façon agrégée : pages vues, zone géographique
+              approximative, appareil, et interactions utiles (sections
+              consultées, simulateur de prix, clics WhatsApp ou e-mail). Aucun
+              cookie publicitaire n'est déposé. Sans accord, ces mesures ne sont
+              pas activées. Vous pouvez changer d'avis via le lien Cookies en
+              bas de page. Le simulateur fonctionne dans votre navigateur : vos
+              réponses ne partent nulle part tant que vous n'envoyez pas le
+              message.
             </p>
 
             <h3>Quand vous me contactez</h3>

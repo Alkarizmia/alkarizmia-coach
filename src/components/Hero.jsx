@@ -1,4 +1,21 @@
 import { useEffect, useRef, useState } from "react";
+import { BOOKING_MESSAGE, mailtoLink, whatsappLink } from "../site.config.js";
+import { trackEvent } from "../analytics.js";
+import { prefersReducedMotion } from "../motion.js";
+
+const HERO_TITLE = "Votre site, à la hauteur de vos avis.";
+const HERO_WORDS = HERO_TITLE.split(" ");
+
+function WhatsAppIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" width="18" height="18">
+      <path
+        fill="currentColor"
+        d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.5-.3Z"
+      />
+    </svg>
+  );
+}
 
 /** 5 sites fictifs — décoratifs uniquement */
 const SITES = [
@@ -50,10 +67,6 @@ const ENTER_MS = 400;
 const HOLD_MS = 2200;
 const EXIT_MS = 250;
 const STAGGER_MS = 80;
-
-function prefersReducedMotion() {
-  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-}
 
 function MockContent({ site }) {
   const btnStyle = { backgroundColor: site.accent };
@@ -301,37 +314,65 @@ export default function Hero() {
         ? "mock-stage__content is-out"
         : "mock-stage__content";
 
+  const reduceMotion =
+    typeof window !== "undefined" && prefersReducedMotion();
+
   return (
     <section id="accueil" className="section hero" aria-labelledby="hero-title">
       <div className="hero__pattern" aria-hidden="true" />
+      <div className="hero__wash" aria-hidden="true" />
 
       <div className="container hero__grid">
         <div className="hero__copy">
-          <h1
-            id="hero-title"
-            className="hero__title"
-            data-reveal
-            data-reveal-group="hero-copy"
-          >
-            Votre site de coach, prêt en 10 jours.
+          <h1 id="hero-title" className="hero__title">
+            <span className="visually-hidden">{HERO_TITLE}</span>
+            {HERO_WORDS.map((word, i) => (
+              <span
+                key={`${word}-${i}`}
+                className={`hero__word${reduceMotion ? " is-in" : ""}`}
+                style={{ "--i": i }}
+                aria-hidden="true"
+              >
+                {word}
+                {i < HERO_WORDS.length - 1 ? "\u00a0" : ""}
+              </span>
+            ))}
           </h1>
           <p
             className="hero__subtitle"
             data-reveal
             data-reveal-group="hero-copy"
           >
-            Des sites élégants pour coachs indépendants, à Bruxelles.
+            Sites pour coachs indépendants à Bruxelles.
           </p>
           <div
             className="hero__actions"
             data-reveal
             data-reveal-group="hero-copy"
           >
-            <a href="#contact" className="btn btn--primary">
-              Me contacter
+            <a
+              href={mailtoLink(
+                "Échange gratuit de 15 minutes",
+                BOOKING_MESSAGE
+              )}
+              className="btn btn--primary"
+              onClick={() =>
+                trackEvent("cta_email", { location: "hero_booking" })
+              }
+            >
+              Échange gratuit · 15 min
             </a>
-            <a href="#offres" className="btn btn--secondary">
-              Voir les formules
+            <a
+              href={whatsappLink(BOOKING_MESSAGE)}
+              className="btn btn--secondary hero__wa"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() =>
+                trackEvent("cta_whatsapp", { location: "hero" })
+              }
+            >
+              <WhatsAppIcon />
+              WhatsApp
             </a>
           </div>
         </div>
@@ -340,7 +381,7 @@ export default function Hero() {
           <div className="hero__glow" aria-hidden="true" />
 
           <div
-            className="browser-mock"
+            className="browser-mock browser-mock--float"
             ref={mockRef}
             aria-hidden="true"
             style={{ "--mock-accent": site.accent }}
@@ -371,7 +412,6 @@ export default function Hero() {
             </div>
           </div>
 
-          <p className="hero__caption">Exemples fictifs</p>
         </div>
       </div>
     </section>

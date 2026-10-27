@@ -37,23 +37,23 @@ export default function APropos() {
 
         <div className="about__copy">
           <p className="section__eyebrow" data-reveal>
-            À propos
+            Confiance
           </p>
           <h2 id="apropos-title" className="section__title" data-reveal>
-            Un site pensé par quelqu'un qui connaît la salle.
+            Qui est derrière Alkarizmia
           </h2>
           <p data-reveal data-reveal-group="about">
-            Je m’appelle {OWNER.firstName}. Je suis étudiant et je crée des sites
-            web pour les coachs sportifs et les petites salles.
+            Je m'appelle {OWNER.firstName}. Je suis basé à {OWNER.city}. Je crée
+            des sites pour les coachs indépendants et les petites structures.
           </p>
           <p data-reveal data-reveal-group="about">
-            Je pratique moi-même la musculation : je connais cet univers et ce
-            dont vous avez besoin pour être trouvé et contacté.
+            Je pratique la musculation. Je connais cet univers et ce qu'il faut
+            pour être trouvé, compris et contacté sans friction.
           </p>
           <p data-reveal data-reveal-group="about">
-            Vous parlez toujours à la même personne. Je vous explique chaque
-            étape simplement, je respecte le délai annoncé, et à la fin tout est
-            à votre nom : vous restez libre.
+            Vous parlez toujours à la même personne. Chaque étape est expliquée
+            simplement. Le délai annoncé est respecté. À la fin, tout est à
+            votre nom.
           </p>
 
           <dl className="about__facts">

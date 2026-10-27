@@ -1,5 +1,5 @@
 import logoMark from "../assets/logo-mark.svg";
-import { CONTACT, OWNER } from "../site.config.js";
+import { CONTACT, OWNER, telLink, whatsappLink } from "../site.config.js";
 import LegalDialog from "./LegalDialog.jsx";
 
 const YEAR = new Date().getFullYear();
@@ -38,7 +38,14 @@ export default function Footer() {
         <div className="site-footer__col">
           <p className="site-footer__heading">Contact</p>
           <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>
-          <span>{CONTACT.whatsappDisplay}</span>
+          <a href={telLink()}>{CONTACT.whatsappDisplay}</a>
+          <a
+            href={whatsappLink()}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            WhatsApp
+          </a>
         </div>
       </div>
 
@@ -49,6 +56,7 @@ export default function Footer() {
         <p className="site-footer__legal-links">
           <a href="#mentions-legales">Mentions légales</a>
           <a href="#confidentialite">Confidentialité</a>
+          <a href="#cookies">Cookies</a>
         </p>
       </div>
 

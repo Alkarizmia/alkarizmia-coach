@@ -2,6 +2,28 @@
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
+    <!-- Google tag (gtag.js) + Consent Mode (refusé par défaut jusqu'à acceptation) -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        analytics_storage: 'denied',
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        wait_for_update: 500
+      });
+      try {
+        if (localStorage.getItem('alkarizmia_cookie_consent') === 'granted') {
+          gtag('consent', 'update', { analytics_storage: 'granted' });
+        }
+      } catch (e) {}
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LS6R68NH17"></script>
+    <script>
+      gtag('js', new Date());
+      gtag('config', 'G-LS6R68NH17', { anonymize_ip: true });
+    </script>
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" type="image/png" sizes="48x48" href="/favicon.png" />
     <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
@@ -10,10 +32,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#F7F4EE" />
 
-    <title>Alkarizmia | Création de site web pour coachs à Bruxelles</title>
+    <title>Alkarizmia | Site web pour coachs indépendants à Bruxelles</title>
     <meta
       name="description"
-      content="Création de sites web pour coachs indépendants à Bruxelles (sport, vie, business, bien-être). Site élégant, prêt en environ 10 jours. Domaine à votre nom. Devis clair."
+      content="Un site clair pour coachs à Bruxelles : être trouvé, compris et contacté facilement. Échange gratuit de 15 minutes. Domaine à votre nom. Formules dès 290 €."
     />
     <meta
       name="keywords"
@@ -32,11 +54,11 @@
     <meta property="og:site_name" content="Alkarizmia" />
     <meta
       property="og:title"
-      content="Alkarizmia | Création de site web pour coachs à Bruxelles"
+      content="Alkarizmia | Site web pour coachs indépendants à Bruxelles"
     />
     <meta
       property="og:description"
-      content="Des sites élégants pour coachs indépendants à Bruxelles. Prêt en environ 10 jours. Formules claires, domaine à votre nom."
+      content="Un site clair pour être trouvé, compris et contacté. Échange gratuit de 15 minutes. Domaine à votre nom."
     />
     <meta property="og:image" content="https://alkarizmia.com/og-image.png" />
     <meta property="og:image:type" content="image/png" />
@@ -48,11 +70,11 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta
       name="twitter:title"
-      content="Alkarizmia | Création de site web pour coachs à Bruxelles"
+      content="Alkarizmia | Site web pour coachs indépendants à Bruxelles"
     />
     <meta
       name="twitter:description"
-      content="Sites élégants pour coachs indépendants à Bruxelles. Prêt en environ 10 jours."
+      content="Un site clair pour être trouvé, compris et contacté. Échange gratuit de 15 minutes."
     />
     <meta name="twitter:image" content="https://alkarizmia.com/og-image.png" />
 

@@ -31,7 +31,7 @@ const FORMULES = [
 
 export default function Offres() {
   const [match, setMatch] = useState(null);
-  const matched = match?.replace(" +", "");
+  const matched = match?.formule?.replace(" +", "");
 
   return (
     <section
@@ -46,30 +46,47 @@ export default function Offres() {
         <h2 id="formules-title" className="section__title" data-reveal>
           Formules
         </h2>
+        <p className="formules__lead" data-reveal>
+          Paiement unique. Le site et le domaine sont à votre nom. Acompte de
+          40&nbsp;% à la commande, 60&nbsp;% à la livraison. Suivi mensuel en
+          option.
+        </p>
 
         <div className="formules-grid">
-          {FORMULES.map((formule) => (
-            <article
-              key={formule.name}
-              className={`formule-card${formule.featured ? " formule-card--featured" : ""}${matched === formule.name ? " formule-card--match" : ""}`}
-              data-reveal
-              data-reveal-group="formules"
-            >
-              {matched === formule.name ? (
-                <span className="formule-card__badge formule-card__badge--match">
-                  Pour vous
-                </span>
-              ) : (
-                formule.featured && (
-                  <span className="formule-card__badge">Le plus choisi</span>
-                )
-              )}
-              <h3 className="formule-card__name">{formule.name}</h3>
-              <p className="formule-card__price">{formule.price}</p>
-              <p className="formule-card__desc">{formule.description}</p>
-            </article>
-          ))}
+          {FORMULES.map((formule) => {
+            const isMatch = matched === formule.name;
+            return (
+              <article
+                key={formule.name}
+                className={`formule-card${formule.featured ? " formule-card--featured" : ""}${isMatch ? " formule-card--match" : ""}`}
+                data-reveal
+                data-reveal-group="formules"
+              >
+                {isMatch ? (
+                  <span className="formule-card__badge formule-card__badge--match">
+                    Pour vous
+                  </span>
+                ) : (
+                  formule.featured && (
+                    <span className="formule-card__badge">Le plus choisi</span>
+                  )
+                )}
+                <h3 className="formule-card__name">{formule.name}</h3>
+                <p className="formule-card__price">
+                  {isMatch ? `≈ ${match.total} €` : formule.price}
+                </p>
+                <p className="formule-card__desc">{formule.description}</p>
+              </article>
+            );
+          })}
         </div>
+
+        <ul className="formules-terms" data-reveal>
+          <li>Paiement unique, pas d'abonnement obligatoire pour le site.</li>
+          <li>Domaine, hébergement et accès enregistrés à votre nom.</li>
+          <li>40&nbsp;% à la commande, 60&nbsp;% à la livraison.</li>
+          <li>Suivi mensuel optionnel (mises à jour et petites modifications).</li>
+        </ul>
 
         <Estimator onResult={setMatch} />
 

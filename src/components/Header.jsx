@@ -36,7 +36,7 @@ export default function Header() {
           ))}
         </nav>
         <a href="#contact" className="btn btn--primary btn--header">
-          Me contacter
+          Échange 15 min
         </a>
       </div>
     </header>
