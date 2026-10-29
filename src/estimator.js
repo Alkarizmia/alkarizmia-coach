@@ -1,7 +1,12 @@
 /**
  * Simulateur de prix — questions et calcul.
- * Prix indicatifs basés sur les formules (Essentiel 350 €, Signature 590 €, Refonte dès 290 €).
+ * Prix alignés sur site.config.js (FORMULES / FORMULE_EXTRAS / ENTRETIEN).
  */
+
+import { ENTRETIEN, FORMULE_EXTRAS, FORMULES } from "./site.config.js";
+
+const byName = Object.fromEntries(FORMULES.map((f) => [f.name, f]));
+const extraPrice = Object.fromEntries(FORMULE_EXTRAS.map((e) => [e.id, e.price]));
 
 export const QUESTIONS = [
   {
@@ -48,23 +53,48 @@ export const QUESTIONS = [
     title: "Un petit plus ?",
     multiple: true,
     options: [
-      { value: "reservation", label: "Réservation en ligne", hint: "≈ +60 €" },
-      { value: "textes", label: "J'aimerais qu'on rédige mes textes", hint: "≈ +90 €", short: "rédaction des textes" },
-      { value: "suivi", label: "Suivi mensuel", hint: "39 €/mois · mises à jour, 2 modifications/mois · 6 mois min." },
+      {
+        value: "reservation",
+        label: "Réservation en ligne",
+        hint: `≈ +${extraPrice.reservation} €`,
+      },
+      {
+        value: "textes",
+        label: "J'aimerais qu'on rédige mes textes",
+        hint: `≈ +${extraPrice.textes} €`,
+        short: "rédaction des textes",
+      },
+      {
+        value: "suivi",
+        label: "Entretien & visibilité",
+        hint: `${ENTRETIEN.price} €/mois · mises à jour, 2 modifications/mois · 6 mois min.`,
+      },
     ],
   },
 ];
 
 const PRICES = {
-  nouveau: { 1: 350, 4: 590, "5+": 740 },
-  refonte: { 1: 290, 4: 490, "5+": 640 },
-  reservation: 60,
-  textes: 90,
-  suivi: 39,
+  nouveau: {
+    1: byName.Essentiel.price,
+    4: byName.Signature.price,
+    "5+": byName["Signature +"].price,
+  },
+  refonte: {
+    1: byName.Refonte.sizes[0].price,
+    4: byName.Refonte.sizes[1].price,
+    "5+": byName.Refonte.sizes[2].price,
+  },
+  reservation: extraPrice.reservation,
+  textes: extraPrice.textes,
+  suivi: ENTRETIEN.price,
   domaine: 10,
 };
 
-const DELAYS = { 1: 7, 4: 10, "5+": 14 };
+const DELAYS = {
+  1: byName.Essentiel.days,
+  4: byName.Signature.days,
+  "5+": byName["Signature +"].days,
+};
 
 /** Libellé d'une réponse (version courte pour le message si elle existe) */
 export function labelOf(questionId, value, { short = false } = {}) {
