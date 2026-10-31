@@ -112,7 +112,7 @@ export default function Offres() {
     let suppressClick = false;
 
     const onPointerDown = (e) => {
-      if (e.pointerType === "touch") return; /* touch-action: pan-x gère le tactile */
+      if (e.pointerType === "touch") return; /* tactile : scroll natif (vertical page + horizontal carrousel) */
       if (e.button !== 0) return;
       if (track.scrollWidth <= track.clientWidth + 8) return;
       dragRef.current = {

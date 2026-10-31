@@ -1999,12 +1999,13 @@ ul {
   margin: 0 calc(-1 * var(--space-2)) 0;
   padding: var(--space-3) var(--space-2) var(--space-2);
   overflow-x: auto;
-  overflow-y: hidden;
+  overflow-y: visible;
   scroll-snap-type: x mandatory;
   scroll-padding-inline: var(--space-2);
   -webkit-overflow-scrolling: touch;
   overscroll-behavior-x: contain;
-  touch-action: pan-x;
+  /* auto : swipe vertical = scroll page, swipe horizontal = carrousel */
+  touch-action: auto;
   scrollbar-width: none;
   cursor: grab;
 }
