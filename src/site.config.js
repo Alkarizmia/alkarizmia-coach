@@ -82,6 +82,129 @@ export const HOSTING = {
   url: "https://vercel.com",
 };
 
+/** Coopérative qui émet devis et factures */
+export const BILLING = {
+  name: "Smart",
+  url: "https://smartbe.be",
+  label: "coopérative Smart",
+};
+
+/**
+ * Conditions générales — textes de la page /conditions
+ * (list = puces ; paragraphs = paragraphes)
+ */
+export const CONDITIONS = {
+  title: "Conditions générales",
+  intro:
+    "Ces conditions décrivent comment se déroulent une commande, le paiement, la livraison et l'entretien du site. Elles sont rédigées simplement, pour être claires avant de commencer.",
+  updatedLabel: "Dernière mise à jour : novembre 2026",
+  privacyLinkLabel: "politique de confidentialité",
+  privacyHash: "#confidentialite",
+  sections: [
+    {
+      id: "qui",
+      title: "Qui sommes-nous",
+      paragraphs: [
+        "Alkarizmia est le nom commercial de Bilal El Fahmi, créateur de sites web pour coachs indépendants à Bruxelles. Les prestations sont facturées via la coopérative Smart (smartbe.be), qui émet les devis et les factures.",
+        "Contact : contact@alkarizmia.com · WhatsApp +32 487 87 04 77.",
+      ],
+    },
+    {
+      id: "prix",
+      title: "Prix et paiement",
+      list: [
+        "Tous les prix affichés sont TVA comprise.",
+        "Le client choisit : paiement en une fois à la signature, ou en deux fois (40 % à la signature, 60 % à la livraison).",
+        "Paiement par virement, sur la facture reçue.",
+      ],
+    },
+    {
+      id: "delais",
+      title: "Démarrage et délais",
+      list: [
+        "Le travail commence après la signature du devis, le paiement de l'acompte (ou du total) et la réception de tous les contenus (photos, textes, logo).",
+        "Les délais annoncés (environ 7, 10 ou 14 jours selon la formule) démarrent à partir de cette réception.",
+      ],
+    },
+    {
+      id: "corrections",
+      title: "Corrections et validation",
+      list: [
+        "La maquette présentée avant la commande sert de base à la structure du site.",
+        "Deux séries de corrections sont incluses après la présentation du site.",
+        "Les demandes au-delà, ou qui modifient la structure validée (nouvelles pages, nouvelles fonctionnalités), sont facturées à part (30 € de l'heure) ou incluses dans l'offre Entretien & visibilité.",
+        "Sans retour du client dans les 7 jours suivant la livraison, le site est considéré comme validé et le solde est dû.",
+      ],
+    },
+    {
+      id: "annulation",
+      title: "Annulation",
+      list: [
+        "L'acompte est remboursé si le client annule avant le début du travail (avant l'envoi de ses contenus).",
+        "Une fois le travail commencé, l'acompte n'est plus remboursable, car il couvre le travail déjà réalisé.",
+      ],
+    },
+    {
+      id: "propriete",
+      title: "Mise en ligne, nom de domaine et propriété",
+      list: [
+        "Le nom de domaine est enregistré au nom du client. Le domaine et l'hébergement sont inclus la première année.",
+        "La mise en ligne définitive sur le nom de domaine du client a lieu après paiement complet.",
+        "Le site devient la propriété du client après paiement complet.",
+        "Le domaine peut être transféré au client sur simple demande (les éventuels frais du nouveau fournisseur restent à charge du client).",
+        "Les années suivantes, le renouvellement du domaine est inclus dans l'offre Entretien & visibilité, ou refacturé au prix coûtant.",
+      ],
+    },
+    {
+      id: "entretien",
+      title: "Entretien & visibilité (optionnel)",
+      list: [
+        "39 € par mois, engagement de 6 mois, réglé en une fois pour la période (234 €).",
+        "Comprend : ajout des nouveaux avis Google, 2 petites modifications par mois, sauvegardes, renouvellement du domaine.",
+        "L'Entretien n'est pas renouvelé automatiquement. Un mois avant la fin des 6 mois, Alkarizmia propose au client de le prolonger.",
+      ],
+    },
+    {
+      id: "donnees",
+      title: "Données personnelles",
+      paragraphs: [
+        "Pour savoir comment vos données sont utilisées (contact, facturation via Smart, mesure d'audience), consultez la politique de confidentialité.",
+      ],
+      linkToPrivacy: true,
+    },
+  ],
+};
+
+/** Textes de la politique de confidentialité (dialogue + renvoi depuis les CG) */
+export const PRIVACY = {
+  sections: [
+    {
+      title: "Données collectées",
+      paragraphs: [
+        "Ce site n'a ni formulaire ni compte. Avec votre accord (bannière cookies), j'utilise Google Analytics (G-LS6R68NH17) pour mesurer l'audience de façon agrégée : pages vues, zone géographique approximative, appareil, et interactions utiles (sections consultées, simulateur de prix, clics WhatsApp ou e-mail). Aucun cookie publicitaire n'est déposé. Sans accord, ces mesures ne sont pas activées. Vous pouvez changer d'avis via le lien Cookies en bas de page. Le simulateur fonctionne dans votre navigateur : vos réponses ne partent nulle part tant que vous n'envoyez pas le message.",
+      ],
+    },
+    {
+      title: "Quand vous me contactez",
+      paragraphs: [
+        "Si vous m'écrivez par e-mail ou WhatsApp, j'utilise votre nom, vos coordonnées et votre message uniquement pour vous répondre et, si nous travaillons ensemble, pour réaliser votre site. Ces échanges sont conservés au maximum 3 ans après le dernier contact, puis supprimés.",
+      ],
+    },
+    {
+      title: "Facturation via Smart",
+      paragraphs: [
+        "Lorsque nous travaillons ensemble, les données nécessaires à la facturation (nom, adresse, e-mail, numéro d'entreprise le cas échéant) sont transmises à la coopérative Smart (smartbe.be) pour établir les devis et les factures. Smart traite ces données en tant que partenaire de facturation. Je ne les utilise pas à d'autres fins.",
+      ],
+    },
+    {
+      title: "Vos droits",
+      paragraphs: [
+        "Conformément au RGPD, vous pouvez demander l'accès, la correction ou la suppression de vos données en écrivant à contact@alkarizmia.com. En cas de désaccord, vous pouvez introduire une plainte auprès de l'Autorité de protection des données (autoriteprotectiondonnees.be).",
+      ],
+    },
+  ],
+};
+
 /** Paiement unique — 40 % à la commande, 60 % à la livraison */
 export const PAYMENT = {
   depositPercent: 40,
@@ -314,7 +437,7 @@ export const ENTRETIEN = {
     { icon: "edit", text: "2 petites modifications par mois" },
     { icon: "shield", text: "Sauvegardes et vérifications" },
   ],
-  note: "6 mois minimum, puis vous arrêtez quand vous voulez avec 30 jours de préavis.",
+  note: "6 mois, réglés en une fois. Pas de renouvellement automatique : un mois avant la fin, je vous propose de prolonger.",
 };
 
 export const FORMULES_UI = {

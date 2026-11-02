@@ -67,7 +67,7 @@ export const QUESTIONS = [
       {
         value: "suivi",
         label: "Entretien & visibilité",
-        hint: `${ENTRETIEN.price} €/mois · mises à jour, 2 modifications/mois · 6 mois min.`,
+        hint: `${ENTRETIEN.price} €/mois · 6 mois · pas de renouvellement auto`,
       },
     ],
   },

@@ -10,7 +10,7 @@ export default function Footer() {
     <footer className="site-footer">
       <div className="container site-footer__grid">
         <div className="site-footer__brand">
-          <a href="#accueil" className="site-header__brand">
+          <a href="/#accueil" className="site-header__brand">
             <img
               src={logoMark}
               alt=""
@@ -56,6 +56,7 @@ export default function Footer() {
         <p className="site-footer__legal-links">
           <a href="#mentions-legales">Mentions légales</a>
           <a href="#confidentialite">Confidentialité</a>
+          <a href="/conditions">Conditions générales</a>
           <a href="#cookies">Cookies</a>
         </p>
       </div>

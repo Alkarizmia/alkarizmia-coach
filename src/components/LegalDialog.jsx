@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { CONTACT, HOSTING, OWNER } from "../site.config.js";
+import { CONTACT, HOSTING, OWNER, PRIVACY } from "../site.config.js";
 
 const PENDING = "en cours d'enregistrement";
 
@@ -131,36 +131,14 @@ export default function LegalDialog() {
           </div>
         ) : (
           <div className="legal__body" role="tabpanel">
-            <h3>Données collectées</h3>
-            <p>
-              Ce site n'a ni formulaire ni compte. Avec votre accord (bannière
-              cookies), j'utilise Google Analytics (G-LS6R68NH17) pour mesurer
-              l'audience de façon agrégée : pages vues, zone géographique
-              approximative, appareil, et interactions utiles (sections
-              consultées, simulateur de prix, clics WhatsApp ou e-mail). Aucun
-              cookie publicitaire n'est déposé. Sans accord, ces mesures ne sont
-              pas activées. Vous pouvez changer d'avis via le lien Cookies en
-              bas de page. Le simulateur fonctionne dans votre navigateur : vos
-              réponses ne partent nulle part tant que vous n'envoyez pas le
-              message.
-            </p>
-
-            <h3>Quand vous me contactez</h3>
-            <p>
-              Si vous m'écrivez par e-mail ou WhatsApp, j'utilise votre nom, vos
-              coordonnées et votre message uniquement pour vous répondre et, si
-              nous travaillons ensemble, pour réaliser votre site. Ces échanges
-              sont conservés au maximum 3 ans après le dernier contact, puis
-              supprimés.
-            </p>
-
-            <h3>Vos droits</h3>
-            <p>
-              Conformément au RGPD, vous pouvez demander l'accès, la correction
-              ou la suppression de vos données en écrivant à {CONTACT.email}. En
-              cas de désaccord, vous pouvez introduire une plainte auprès de
-              l'Autorité de protection des données (autoriteprotectiondonnees.be).
-            </p>
+            {PRIVACY.sections.map((section) => (
+              <div key={section.title}>
+                <h3>{section.title}</h3>
+                {section.paragraphs.map((text) => (
+                  <p key={text.slice(0, 48)}>{text}</p>
+                ))}
+              </div>
+            ))}
           </div>
         )}
       </div>
