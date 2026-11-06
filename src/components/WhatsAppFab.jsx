@@ -1,15 +1,25 @@
-import { BOOKING_MESSAGE, whatsappLink } from "../site.config.js";
+import { useEffect, useState } from "react";
+import { MOCKUP_MESSAGE, whatsappLink } from "../site.config.js";
 import { trackEvent } from "../analytics.js";
+import { prefersReducedMotion } from "../motion.js";
 
-/** Bouton WhatsApp flottant, visible surtout sur mobile */
+/** Bulle WhatsApp — visible pendant tout le scroll. */
 export default function WhatsAppFab() {
+  const [pulse, setPulse] = useState(false);
+
+  useEffect(() => {
+    if (prefersReducedMotion()) return undefined;
+    const id = window.setTimeout(() => setPulse(true), 5000);
+    return () => window.clearTimeout(id);
+  }, []);
+
   return (
     <a
-      className="wa-fab"
-      href={whatsappLink(BOOKING_MESSAGE)}
+      className={`wa-fab${pulse ? " is-pulse" : ""}`}
+      href={whatsappLink(MOCKUP_MESSAGE)}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="Réserver un échange sur WhatsApp"
+      aria-label="Recevoir ma maquette gratuite sur WhatsApp"
       onClick={() => trackEvent("cta_whatsapp", { location: "fab" })}
     >
       <svg viewBox="0 0 24 24" aria-hidden="true" width="28" height="28">

@@ -5,7 +5,7 @@ export default function Faq() {
   return (
     <section
       id="faq"
-      className="section section-tone section-tone--sand"
+      className="section section-tone section-tone--chapter"
       aria-labelledby="faq-title"
     >
       <div className="container faq__grid">

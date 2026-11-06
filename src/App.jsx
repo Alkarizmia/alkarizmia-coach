@@ -2,9 +2,10 @@
  * Page unique — assemblage des sections.
  * Route légère : /conditions affiche les conditions générales.
  */
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Header from "./components/Header.jsx";
 import Hero from "./components/Hero.jsx";
+import ExplainerVideo from "./components/ExplainerVideo.jsx";
 import Reparer from "./components/Reparer.jsx";
 import Gains from "./components/Gains.jsx";
 import Offres from "./components/Offres.jsx";
@@ -15,7 +16,6 @@ import Faq from "./components/Faq.jsx";
 import Contact from "./components/Contact.jsx";
 import Footer from "./components/Footer.jsx";
 import Conditions from "./components/Conditions.jsx";
-import MobileContactBar from "./components/MobileContactBar.jsx";
 import WhatsAppFab from "./components/WhatsAppFab.jsx";
 import CookieBanner from "./components/CookieBanner.jsx";
 import Seo from "./components/Seo.jsx";
@@ -38,13 +38,20 @@ function Ambiance() {
 
 export default function App() {
   const [path, setPath] = useState(() => normalizePath(window.location.pathname));
+  const [cookieOpen, setCookieOpen] = useState(false);
   const isConditions = path === "/conditions";
+  const onCookieVisibility = useCallback((open) => setCookieOpen(open), []);
 
   useEffect(() => {
     const onPop = () => setPath(normalizePath(window.location.pathname));
     window.addEventListener("popstate", onPop);
     return () => window.removeEventListener("popstate", onPop);
   }, []);
+
+  useEffect(() => {
+    document.body.classList.toggle("has-cookie-bar", cookieOpen);
+    return () => document.body.classList.remove("has-cookie-bar");
+  }, [cookieOpen]);
 
   useEffect(() => {
     if (isConditions) return undefined;
@@ -60,9 +67,8 @@ export default function App() {
         <Header />
         <Conditions />
         <Footer />
-        <MobileContactBar />
         <WhatsAppFab />
-        <CookieBanner />
+        <CookieBanner onVisibilityChange={onCookieVisibility} />
       </>
     );
   }
@@ -74,6 +80,7 @@ export default function App() {
       <Header />
       <main>
         <Hero />
+        <ExplainerVideo />
         <Reparer />
         <Gains />
         <Offres />
@@ -84,9 +91,8 @@ export default function App() {
         <Contact />
       </main>
       <Footer />
-      <MobileContactBar />
       <WhatsAppFab />
-      <CookieBanner />
+      <CookieBanner onVisibilityChange={onCookieVisibility} />
     </>
   );
 }

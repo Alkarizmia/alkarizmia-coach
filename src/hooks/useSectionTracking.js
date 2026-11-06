@@ -3,6 +3,7 @@ import { trackEvent } from "../analytics.js";
 
 const SECTION_IDS = [
   "accueil",
+  "explainer",
   "reparer",
   "gains",
   "offres",

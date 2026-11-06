@@ -27,6 +27,11 @@ export const CONTACT = {
 export const BOOKING_MESSAGE =
   "Bonjour Bilal, je voudrais réserver un échange gratuit de 15 minutes pour parler de mon site.";
 
+/** Action principale du site (header, hero, barre mobile) */
+export const PRIMARY_CTA = "Recevoir ma maquette gratuite";
+export const MOCKUP_MESSAGE =
+  "Bonjour Bilal, je voudrais recevoir ma maquette gratuite.";
+
 /** Message prérempli depuis le détail d'une formule */
 export function formuleInterestMessage(formule) {
   if (!formule) return BOOKING_MESSAGE;

@@ -1,14 +1,48 @@
 import { useEffect, useRef, useState } from "react";
-import { BOOKING_MESSAGE, mailtoLink, whatsappLink } from "../site.config.js";
+import {
+  MOCKUP_MESSAGE,
+  PRIMARY_CTA,
+  mailtoLink,
+  whatsappLink,
+} from "../site.config.js";
 import { trackEvent } from "../analytics.js";
 import { prefersReducedMotion } from "../motion.js";
 
-const HERO_TITLE = "Votre site, à la hauteur de vos avis.";
-const HERO_WORDS = HERO_TITLE.split(" ");
+const COACHES = [
+  {
+    domain: "lea-coaching.be",
+    name: "Léa",
+    tag: "Coaching sportif",
+    city: "Ixelles",
+    accent: "#1F4D3F",
+    sessions: ["Force", "Cardio", "Outdoor"],
+  },
+  {
+    domain: "samuel-coachdevie.be",
+    name: "Samuel",
+    tag: "Coach de vie",
+    city: "Uccle",
+    accent: "#B5654A",
+    sessions: ["Clarté", "Objectifs", "Bilan"],
+  },
+  {
+    domain: "nora-yoga.be",
+    name: "Nora",
+    tag: "Yoga & bien-être",
+    city: "Etterbeek",
+    accent: "#4F8A74",
+    sessions: ["Hatha", "Vinyasa", "Yin"],
+  },
+];
 
-function WhatsAppIcon() {
+const CHAR_MS = 50;
+const ERASE_MS = 30;
+const LOAD_MS = 350;
+const HOLD_MS = 4000;
+
+function WhatsAppGlyph({ size = 14 }) {
   return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" width="18" height="18">
+    <svg viewBox="0 0 24 24" aria-hidden="true" width={size} height={size}>
       <path
         fill="currentColor"
         d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.5-.3Z"
@@ -17,158 +51,143 @@ function WhatsAppIcon() {
   );
 }
 
-/** 5 sites fictifs — décoratifs uniquement */
-const SITES = [
-  {
-    domain: "mathis-performance.com",
-    accent: "#1F4D3F",
-    layout: "sport",
-    title: "Coaching sportif",
-    text: "Séances personnalisées, en salle ou en extérieur.",
-    cta: "Réserver une séance",
-  },
-  {
-    domain: "camille-coachdevie.com",
-    accent: "#B5654A",
-    layout: "life",
-    title: "Coaching de vie",
-    text: "Un accompagnement clair pour avancer à votre rythme.",
-    cta: "Prendre rendez-vous",
-  },
-  {
-    domain: "atelier-leadership.com",
-    accent: "#1D2B4A",
-    layout: "business",
-    title: "Coaching business",
-    text: "Clarifiez votre stratégie, passez à l'action.",
-    cta: "Planifier un appel",
-  },
-  {
-    domain: "sarah-yoga-flow.com",
-    accent: "#6B8F71",
-    layout: "yoga",
-    title: "Yoga et bien-être",
-    text: "Des cours pour retrouver calme et énergie.",
-    cta: "Voir les cours",
-  },
-  {
-    domain: "lea-nutrition-coach.com",
-    accent: "#C2852B",
-    layout: "nutrition",
-    title: "Coaching nutrition",
-    text: "Un suivi simple, adapté à votre quotidien.",
-    cta: "Premier échange",
-  },
-];
-
-const CHAR_MS = 55;
-const LOAD_MS = 500;
-const ENTER_MS = 400;
-const HOLD_MS = 2200;
-const EXIT_MS = 250;
-const STAGGER_MS = 80;
-
-function MockContent({ site }) {
-  const btnStyle = { backgroundColor: site.accent };
-
-  if (site.layout === "sport") {
-    return (
-      <div className="mock-site mock-site--sport">
-        <div className="mock-site__col">
-          <p className="mock-site__title mock-stagger">{site.title}</p>
-          <p className="mock-site__text mock-stagger">{site.text}</p>
-          <span className="mock-site__btn mock-stagger" style={btnStyle}>
-            {site.cta}
-          </span>
-        </div>
-        <div className="mock-site__blocks mock-stagger">
-          <span className="mock-site__block" />
-          <span className="mock-site__block" />
-          <span className="mock-site__block" />
-        </div>
+function MockSite({ coach, compact = false }) {
+  return (
+    <div className={`mock-coach${compact ? " mock-coach--compact" : ""}`}>
+      <div
+        className="mock-coach__banner"
+        style={{ backgroundColor: coach.accent }}
+      >
+        <p className="mock-coach__name">{coach.name}</p>
+        <p className="mock-coach__meta">
+          {coach.tag} · {coach.city}
+        </p>
       </div>
-    );
-  }
-
-  if (site.layout === "life") {
-    return (
-      <div className="mock-site mock-site--life">
-        <span className="mock-site__avatar mock-stagger" />
-        <p className="mock-site__title mock-stagger">{site.title}</p>
-        <p className="mock-site__text mock-stagger">{site.text}</p>
-        <span className="mock-site__btn mock-stagger" style={btnStyle}>
-          {site.cta}
+      <div className="mock-coach__body">
+        <p className="mock-coach__rating">
+          <span className="mock-coach__stars">★★★★★</span>
+          4,9 sur Google
+        </p>
+        <div className="mock-coach__cards">
+          {coach.sessions.map((session) => (
+            <span key={session} className="mock-coach__card">
+              {session}
+            </span>
+          ))}
+        </div>
+        <span className="mock-coach__wa">
+          <WhatsAppGlyph size={compact ? 11 : 13} />
+          Réserver un essai
         </span>
       </div>
-    );
-  }
-
-  if (site.layout === "business") {
-    return (
-      <div className="mock-site mock-site--business">
-        <div
-          className="mock-site__banner mock-stagger"
-          style={{ backgroundColor: site.accent }}
-        >
-          <p className="mock-site__title mock-site__title--on-dark">{site.title}</p>
-        </div>
-        <div className="mock-site__split mock-stagger">
-          <p className="mock-site__text">{site.text}</p>
-          <span className="mock-site__btn" style={btnStyle}>
-            {site.cta}
-          </span>
-        </div>
-      </div>
-    );
-  }
-
-  if (site.layout === "yoga") {
-    return (
-      <div className="mock-site mock-site--yoga">
-        <div className="mock-site__media mock-stagger" />
-        <div className="mock-site__col mock-stagger">
-          <p className="mock-site__title">{site.title}</p>
-          <p className="mock-site__text">{site.text}</p>
-          <span className="mock-site__btn" style={btnStyle}>
-            {site.cta}
-          </span>
-        </div>
-      </div>
-    );
-  }
-
-  return (
-    <div className="mock-site mock-site--nutrition">
-      <p className="mock-site__title mock-stagger">{site.title}</p>
-      <p className="mock-site__text mock-stagger">{site.text}</p>
-      <div className="mock-site__cards mock-stagger">
-        <span className="mock-site__card" />
-        <span className="mock-site__card" />
-        <span className="mock-site__card" />
-      </div>
-      <span className="mock-site__btn mock-stagger" style={btnStyle}>
-        {site.cta}
-      </span>
     </div>
   );
 }
 
-/**
- * Hero — trame de points + maquette navigateur animée (5 sites fictifs).
- */
+function MockSkeleton() {
+  return (
+    <div className="mock-skel" aria-hidden="true">
+      <span className="mock-skel__banner" />
+      <span className="mock-skel__line" />
+      <span className="mock-skel__line mock-skel__line--short" />
+      <div className="mock-skel__cards">
+        <span />
+        <span />
+        <span />
+      </div>
+      <span className="mock-skel__btn" />
+    </div>
+  );
+}
+
+function HeroTitle() {
+  return (
+    <h1 id="hero-title" className="hero__title">
+      <span className="visually-hidden">Votre site, à la hauteur de vos avis.</span>
+      <span aria-hidden="true">
+        Votre site, à la hauteur de vos{" "}
+        <span className="hero__avis">
+          avis
+          <svg
+            className="hero__avis-line"
+            viewBox="0 0 86 10"
+            preserveAspectRatio="none"
+            aria-hidden="true"
+          >
+            <path
+              d="M1.5 6.2 C 18 11.5, 38 1.2, 54 6.4 C 66 10.2, 76 3.8, 84.5 6.1"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.4"
+              strokeLinecap="round"
+            />
+          </svg>
+        </span>
+        .
+      </span>
+    </h1>
+  );
+}
+
+function DeviceStage({ coach, typed, phase, reduced }) {
+  const showSite = phase === "hold";
+  const showSkel = !showSite;
+  const caret = phase === "typing" || phase === "erasing";
+
+  return (
+    <div
+      className="hero-stage"
+      aria-hidden="true"
+      style={{ "--coach-accent": coach.accent }}
+    >
+      <div className={`hero-desk${reduced ? "" : " hero-desk--float"}`}>
+        <div className="hero-desk__chrome">
+          <div className="hero-desk__dots">
+            <span />
+            <span />
+            <span />
+          </div>
+          <div className="hero-desk__url">
+            <span className="hero-desk__url-text">{typed}</span>
+            {caret && <span className="hero-desk__caret" />}
+          </div>
+        </div>
+        <div className="hero-desk__screen">
+          {showSkel && <MockSkeleton />}
+          {showSite && (
+            <div className="hero-desk__site">
+              <MockSite coach={coach} />
+            </div>
+          )}
+        </div>
+      </div>
+
+      <div className="hero-handset">
+        <div className="hero-handset__notch" />
+        <div className="hero-handset__screen">
+          {showSkel && <MockSkeleton />}
+          {showSite && <MockSite coach={coach} compact />}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/** Hero — titre animé une fois + maquette ordi/téléphone en boucle. */
 export default function Hero() {
-  const mockRef = useRef(null);
+  const stageRef = useRef(null);
   const timersRef = useRef([]);
   const activeRef = useRef(true);
   const visibleRef = useRef(true);
   const reducedRef = useRef(false);
 
+  const reducedStart =
+    typeof window !== "undefined" && prefersReducedMotion();
   const [index, setIndex] = useState(0);
-  const [phase, setPhase] = useState("hold");
-  const [typed, setTyped] = useState(SITES[0].domain);
-  const [showContent, setShowContent] = useState(true);
+  const [phase, setPhase] = useState(reducedStart ? "hold" : "typing");
+  const [typed, setTyped] = useState(reducedStart ? COACHES[0].domain : "");
 
-  const site = SITES[index];
+  const coach = COACHES[index];
 
   const clearTimers = () => {
     timersRef.current.forEach((id) => clearTimeout(id));
@@ -186,20 +205,11 @@ export default function Hero() {
     if (reducedRef.current) {
       setIndex(0);
       setPhase("hold");
-      setTyped(SITES[0].domain);
-      setShowContent(true);
+      setTyped(COACHES[0].domain);
       return undefined;
     }
 
-    const mockEl = mockRef.current;
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        visibleRef.current = entry.isIntersecting;
-      },
-      { threshold: 0.2 }
-    );
-    if (mockEl) io.observe(mockEl);
-
+    visibleRef.current = true;
     const onVisibility = () => {
       activeRef.current = document.visibilityState === "visible";
     };
@@ -207,7 +217,6 @@ export default function Hero() {
     onVisibility();
 
     return () => {
-      io.disconnect();
       document.removeEventListener("visibilitychange", onVisibility);
       clearTimers();
     };
@@ -233,72 +242,67 @@ export default function Hero() {
 
     const runCycle = (siteIndex) => {
       waitUntilActive(() => {
-        const current = SITES[siteIndex];
+        const current = COACHES[siteIndex];
         setIndex(siteIndex);
-        setShowContent(false);
         setTyped("");
-        setPhase("clear");
+        setPhase("typing");
 
-        later(() => {
+        let i = 0;
+        const typeNext = () => {
           if (!canRun()) {
             waitUntilActive(() => runCycle(siteIndex));
             return;
           }
-          setPhase("typing");
-          let i = 0;
-          const typeNext = () => {
-            if (!canRun()) {
-              waitUntilActive(() => runCycle(siteIndex));
-              return;
-            }
-            i += 1;
-            setTyped(current.domain.slice(0, i));
-            if (i < current.domain.length) {
-              later(typeNext, CHAR_MS);
-            } else {
+          i += 1;
+          setTyped(current.domain.slice(0, i));
+          if (i < current.domain.length) {
+            later(typeNext, CHAR_MS);
+          } else {
+            later(() => {
+              if (!canRun()) {
+                waitUntilActive(() => runCycle(siteIndex));
+                return;
+              }
+              setPhase("loading");
               later(() => {
                 if (!canRun()) {
                   waitUntilActive(() => runCycle(siteIndex));
                   return;
                 }
-                setPhase("loading");
+                setPhase("hold");
                 later(() => {
                   if (!canRun()) {
                     waitUntilActive(() => runCycle(siteIndex));
                     return;
                   }
-                  setPhase("enter");
-                  setShowContent(true);
-                  later(() => {
+                  setPhase("erasing");
+                  let remaining = current.domain;
+                  const erase = () => {
                     if (!canRun()) {
                       waitUntilActive(() => runCycle(siteIndex));
                       return;
                     }
-                    setPhase("hold");
-                    later(() => {
-                      if (!canRun()) {
-                        waitUntilActive(() => runCycle(siteIndex));
-                        return;
-                      }
-                      setPhase("exit");
+                    remaining = remaining.slice(0, -1);
+                    setTyped(remaining);
+                    if (remaining.length === 0) {
                       later(() => {
                         if (cancelled) return;
-                        setShowContent(false);
-                        const next = (siteIndex + 1) % SITES.length;
-                        runCycle(next);
-                      }, EXIT_MS);
-                    }, HOLD_MS);
-                  }, ENTER_MS + STAGGER_MS * 4);
-                }, LOAD_MS);
-              }, CHAR_MS);
-            }
-          };
-          later(typeNext, CHAR_MS);
-        }, 120);
+                        runCycle((siteIndex + 1) % COACHES.length);
+                      }, 80);
+                    } else {
+                      later(erase, ERASE_MS);
+                    }
+                  };
+                  later(erase, ERASE_MS);
+                }, HOLD_MS);
+              }, LOAD_MS);
+            }, CHAR_MS);
+          }
+        };
+        later(typeNext, CHAR_MS);
       });
     };
 
-    /* Premier cycle : repartir depuis le clear pour animer dès le début */
     runCycle(0);
 
     return () => {
@@ -307,14 +311,7 @@ export default function Hero() {
     };
   }, []);
 
-  const contentClass =
-    phase === "enter" || phase === "hold"
-      ? "mock-stage__content is-in"
-      : phase === "exit"
-        ? "mock-stage__content is-out"
-        : "mock-stage__content";
-
-  const reduceMotion =
+  const reduced =
     typeof window !== "undefined" && prefersReducedMotion();
 
   return (
@@ -324,94 +321,48 @@ export default function Hero() {
 
       <div className="container hero__grid">
         <div className="hero__copy">
-          <h1 id="hero-title" className="hero__title">
-            <span className="visually-hidden">{HERO_TITLE}</span>
-            {HERO_WORDS.map((word, i) => (
-              <span
-                key={`${word}-${i}`}
-                className={`hero__word${reduceMotion ? " is-in" : ""}`}
-                style={{ "--i": i }}
-                aria-hidden="true"
-              >
-                {word}
-                {i < HERO_WORDS.length - 1 ? "\u00a0" : ""}
-              </span>
-            ))}
-          </h1>
-          <p
-            className="hero__subtitle"
-            data-reveal
-            data-reveal-group="hero-copy"
-          >
+          <HeroTitle />
+          <p className="hero__subtitle">
             Sites pour coachs indépendants à Bruxelles.
           </p>
-          <div
-            className="hero__actions"
-            data-reveal
-            data-reveal-group="hero-copy"
-          >
+          <div className="hero__actions">
             <a
-              href={mailtoLink(
-                "Échange gratuit de 15 minutes",
-                BOOKING_MESSAGE
-              )}
+              href={whatsappLink(MOCKUP_MESSAGE)}
               className="btn btn--primary"
-              onClick={() =>
-                trackEvent("cta_email", { location: "hero_booking" })
-              }
-            >
-              Échange gratuit · 15 min
-            </a>
-            <a
-              href={whatsappLink(BOOKING_MESSAGE)}
-              className="btn btn--secondary hero__wa"
               target="_blank"
               rel="noopener noreferrer"
               onClick={() =>
                 trackEvent("cta_whatsapp", { location: "hero" })
               }
             >
-              <WhatsAppIcon />
-              WhatsApp
+              {PRIMARY_CTA}
             </a>
+            <a
+              href={mailtoLink("Maquette gratuite", MOCKUP_MESSAGE)}
+              className="hero__mail"
+              onClick={() =>
+                trackEvent("cta_email", { location: "hero_booking" })
+              }
+            >
+              ou m'écrire par e-mail
+            </a>
+            <p className="hero__proof">
+              <span className="hero__proof-stars" aria-hidden="true">
+                ★★★★★
+              </span>
+              <span>Mis en avant : vos avis Google</span>
+            </p>
           </div>
         </div>
 
-        <div className="hero__visual" data-reveal>
+        <div className="hero__visual" ref={stageRef}>
           <div className="hero__glow" aria-hidden="true" />
-
-          <div
-            className="browser-mock browser-mock--float"
-            ref={mockRef}
-            aria-hidden="true"
-            style={{ "--mock-accent": site.accent }}
-          >
-            <div className="browser-mock__chrome">
-              <div className="browser-mock__dots">
-                <span />
-                <span />
-                <span />
-              </div>
-              <div className="browser-mock__url">
-                <span className="browser-mock__url-text">{typed}</span>
-                {(phase === "typing" || phase === "clear") && (
-                  <span className="browser-mock__caret" />
-                )}
-              </div>
-              <div
-                className={`browser-mock__load${phase === "loading" ? " is-active" : ""}`}
-              />
-            </div>
-
-            <div className="mock-stage">
-              {showContent && (
-                <div key={index} className={contentClass}>
-                  <MockContent site={site} />
-                </div>
-              )}
-            </div>
-          </div>
-
+          <DeviceStage
+            coach={coach}
+            typed={typed}
+            phase={reduced ? "hold" : phase}
+            reduced={reduced}
+          />
         </div>
       </div>
     </section>

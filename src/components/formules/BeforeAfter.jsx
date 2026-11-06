@@ -1,11 +1,20 @@
 import { useCallback, useRef, useState } from "react";
 
+const AXIS_PX = 8;
+
 /**
- * Slider avant / après — glisser pour comparer (Refonte).
+ * Slider avant / après — glisser horizontalement.
+ * Le défilement vertical de la page reste libre.
  */
 export default function BeforeAfter({ before, after }) {
   const [pos, setPos] = useState(50);
-  const dragging = useRef(false);
+  const drag = useRef({
+    active: false,
+    axis: null,
+    pointerId: null,
+    startX: 0,
+    startY: 0,
+  });
   const track = useRef(null);
 
   const setFromClientX = useCallback((clientX) => {
@@ -16,19 +25,49 @@ export default function BeforeAfter({ before, after }) {
     setPos(Math.min(96, Math.max(4, next)));
   }, []);
 
+  const endDrag = (e) => {
+    const state = drag.current;
+    if (state.pointerId != null && e?.currentTarget?.hasPointerCapture?.(state.pointerId)) {
+      e.currentTarget.releasePointerCapture(state.pointerId);
+    }
+    drag.current = {
+      active: false,
+      axis: null,
+      pointerId: null,
+      startX: 0,
+      startY: 0,
+    };
+  };
+
   const onPointerDown = (e) => {
-    dragging.current = true;
-    e.currentTarget.setPointerCapture?.(e.pointerId);
-    setFromClientX(e.clientX);
+    drag.current = {
+      active: true,
+      axis: null,
+      pointerId: e.pointerId,
+      startX: e.clientX,
+      startY: e.clientY,
+    };
   };
 
   const onPointerMove = (e) => {
-    if (!dragging.current) return;
-    setFromClientX(e.clientX);
-  };
+    const state = drag.current;
+    if (!state.active) return;
 
-  const onPointerUp = () => {
-    dragging.current = false;
+    if (state.axis == null) {
+      const dx = e.clientX - state.startX;
+      const dy = e.clientY - state.startY;
+      if (Math.abs(dx) < AXIS_PX && Math.abs(dy) < AXIS_PX) return;
+      if (Math.abs(dy) > Math.abs(dx)) {
+        endDrag(e);
+        return;
+      }
+      state.axis = "x";
+      e.currentTarget.setPointerCapture?.(e.pointerId);
+    }
+
+    if (state.axis === "x") {
+      setFromClientX(e.clientX);
+    }
   };
 
   return (
@@ -38,8 +77,8 @@ export default function BeforeAfter({ before, after }) {
         ref={track}
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
-        onPointerUp={onPointerUp}
-        onPointerCancel={onPointerUp}
+        onPointerUp={endDrag}
+        onPointerCancel={endDrag}
         role="group"
         aria-label="Comparaison avant et après"
       >

@@ -1,39 +1,63 @@
 import { useMemo, useState } from "react";
-import { BOOKING_MESSAGE, mailtoLink } from "../site.config.js";
+import {
+  MOCKUP_MESSAGE,
+  PRIMARY_CTA,
+  whatsappLink,
+} from "../site.config.js";
 import { trackEvent } from "../analytics.js";
+import { prefersReducedMotion } from "../motion.js";
 
 const FIXES = [
   {
+    id: "domaine",
+    label: "Nom de domaine",
+    gain: "Une adresse qui inspire confiance.",
+  },
+  {
+    id: "titre",
+    label: "Titre Google",
+    gain: "On comprend tout de suite qui vous êtes.",
+  },
+  {
     id: "avis",
-    label: "Afficher les avis Google",
+    label: "Avis Google",
     gain: "Vos clients voient qu'on vous fait confiance.",
   },
   {
     id: "whatsapp",
-    label: "Ajouter WhatsApp",
+    label: "WhatsApp",
     gain: "On vous joint en un tap.",
   },
   {
-    id: "titre",
-    label: "Corriger le titre Google",
-    gain: "On comprend tout de suite qui vous êtes.",
-  },
-  {
-    id: "domaine",
-    label: "Un vrai nom de domaine",
-    gain: "Une adresse qui inspire confiance.",
-  },
-  {
     id: "rdv",
-    label: "Bouton de réservation",
+    label: "Réservation",
     gain: "Le rendez-vous se prend sans friction.",
   },
 ];
 
+function Spot({ id, done, flash, label, onActivate, children, className }) {
+  const on = done.has(id);
+  return (
+    <div
+      className={`reparer__spot${on ? " is-on" : ""}${flash === id ? " is-flash" : ""}${className ? ` ${className}` : ""}`}
+    >
+      {children}
+      {!on && (
+        <button
+          type="button"
+          className="reparer__hotspot"
+          onClick={() => onActivate(id)}
+          aria-label={label}
+        />
+      )}
+    </div>
+  );
+}
+
 /** Jeu : réparer un site de coach fictif en 5 clics */
 export default function Reparer() {
   const [done, setDone] = useState(() => new Set());
-  const [lastGain, setLastGain] = useState("");
+  const [flash, setFlash] = useState(null);
   const score = done.size;
   const complete = score === FIXES.length;
 
@@ -42,8 +66,10 @@ export default function Reparer() {
     const next = new Set(done);
     next.add(id);
     setDone(next);
-    const fix = FIXES.find((f) => f.id === id);
-    setLastGain(fix?.gain ?? "");
+    setFlash(id);
+    if (!prefersReducedMotion()) {
+      window.setTimeout(() => setFlash((cur) => (cur === id ? null : cur)), 320);
+    }
     trackEvent("repair_fix", { fix_id: id, score: next.size });
     if (next.size === FIXES.length) {
       trackEvent("repair_complete");
@@ -52,7 +78,7 @@ export default function Reparer() {
 
   const restart = () => {
     setDone(new Set());
-    setLastGain("");
+    setFlash(null);
     trackEvent("repair_restart");
   };
 
@@ -69,42 +95,56 @@ export default function Reparer() {
       aria-labelledby="reparer-title"
     >
       <div className="container">
-        <h2 id="reparer-title" className="section__title" data-reveal>
+        <h2 id="reparer-title" className="section__title">
           Réparez ce site en 5 clics
         </h2>
 
         <div
           className={`reparer__gauge ${gaugeClass}`}
-          data-reveal
           aria-live="polite"
         >
-          <div className="reparer__gauge-bar" style={{ "--score": score }}>
+          <div className="reparer__gauge-bar">
             <span style={{ width: `${(score / 5) * 100}%` }} />
           </div>
           <p className="reparer__gauge-label">
-            Score {score}/5
+            {score}/5
           </p>
         </div>
 
         <div className="reparer__layout">
-          <div className="reparer__phone-wrap" data-reveal>
+          <div className="reparer__phone-wrap">
             <div
               className={`reparer__phone${complete ? " is-complete" : ""}`}
-              aria-hidden="true"
             >
-              <div className="reparer__notch" />
+              <div className="reparer__notch" aria-hidden="true" />
               <div className="reparer__screen">
                 <div className="reparer__serp">
-                  <p className="reparer__serp-url">
-                    {done.has("domaine")
-                      ? "camille-coach.be"
-                      : "camille.netlify.app"}
-                  </p>
-                  <p className="reparer__serp-title">
-                    {done.has("titre")
-                      ? "Camille, coach de vie à Ixelles"
-                      : "Home"}
-                  </p>
+                  <Spot
+                    id="domaine"
+                    done={done}
+                    flash={flash}
+                    label="Un vrai nom de domaine"
+                    onActivate={activate}
+                  >
+                    <p className="reparer__serp-url">
+                      {done.has("domaine")
+                        ? "camille-coach.be"
+                        : "camille.netlify.app"}
+                    </p>
+                  </Spot>
+                  <Spot
+                    id="titre"
+                    done={done}
+                    flash={flash}
+                    label="Corriger le titre Google"
+                    onActivate={activate}
+                  >
+                    <p className="reparer__serp-title">
+                      {done.has("titre")
+                        ? "Camille, coach de vie à Ixelles"
+                        : "Home"}
+                    </p>
+                  </Spot>
                   <p className="reparer__serp-desc">
                     Coaching de vie · Bruxelles
                   </p>
@@ -114,38 +154,66 @@ export default function Reparer() {
                   <p className="reparer__site-name">Camille</p>
                   <p className="reparer__site-tag">Coach de vie</p>
 
-                  {done.has("avis") && (
-                    <div className="reparer__reviews is-in">
-                      <p className="reparer__stars" aria-hidden="true">
-                        ★★★★★
-                      </p>
-                      <p className="reparer__review">
-                        « Claire et concrète. » (avis fictif)
-                      </p>
-                      <p className="reparer__review">
-                        « Je me sens plus alignée. » (avis fictif)
-                      </p>
-                    </div>
-                  )}
+                  <Spot
+                    id="avis"
+                    done={done}
+                    flash={flash}
+                    label="Afficher les avis Google"
+                    onActivate={activate}
+                    className="reparer__spot--avis"
+                  >
+                    {done.has("avis") ? (
+                      <div className="reparer__reviews is-in">
+                        <p className="reparer__stars" aria-hidden="true">
+                          ★★★★★
+                        </p>
+                        <p className="reparer__review">
+                          « Claire et concrète. »
+                        </p>
+                      </div>
+                    ) : (
+                      <span className="reparer__placeholder">Avis</span>
+                    )}
+                  </Spot>
 
                   <div className="reparer__actions-row">
-                    {done.has("rdv") && (
-                      <span className="reparer__cta-rdv is-pop">
-                        Prendre rendez-vous
-                      </span>
-                    )}
-                    {done.has("whatsapp") && (
-                      <span className="reparer__cta-wa is-bounce">
-                        WhatsApp
-                      </span>
-                    )}
+                    <Spot
+                      id="rdv"
+                      done={done}
+                      flash={flash}
+                      label="Bouton de réservation"
+                      onActivate={activate}
+                    >
+                      {done.has("rdv") ? (
+                        <span className="reparer__cta-rdv is-pop">
+                          Prendre rendez-vous
+                        </span>
+                      ) : (
+                        <span className="reparer__placeholder">Réserver</span>
+                      )}
+                    </Spot>
+                    <Spot
+                      id="whatsapp"
+                      done={done}
+                      flash={flash}
+                      label="Ajouter WhatsApp"
+                      onActivate={activate}
+                    >
+                      {done.has("whatsapp") ? (
+                        <span className="reparer__cta-wa is-bounce">
+                          WhatsApp
+                        </span>
+                      ) : (
+                        <span className="reparer__placeholder">WhatsApp</span>
+                      )}
+                    </Spot>
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="reparer__panel" data-reveal>
+          <div className="reparer__panel">
             <ul className="reparer__fixes">
               {FIXES.map((fix) => {
                 const active = done.has(fix.id);
@@ -156,7 +224,6 @@ export default function Reparer() {
                       className={`reparer__fix${active ? " is-done" : ""}`}
                       onClick={() => activate(fix.id)}
                       aria-pressed={active}
-                      disabled={active}
                     >
                       <span className="reparer__check" aria-hidden="true">
                         {active ? "✓" : ""}
@@ -168,29 +235,21 @@ export default function Reparer() {
               })}
             </ul>
 
-            {lastGain && !complete && (
-              <p className="reparer__gain" aria-live="polite">
-                {lastGain}
-              </p>
-            )}
-
             {complete && (
               <div className="reparer__success" aria-live="polite">
-                <div className="reparer__burst" aria-hidden="true" />
                 <p className="reparer__success-msg">
-                  C'est exactement ce que je fais pour vous.
+                  Voilà votre site après Alkarizmia
                 </p>
                 <a
-                  href={mailtoLink(
-                    "Échange gratuit de 15 minutes",
-                    BOOKING_MESSAGE
-                  )}
+                  href={whatsappLink(MOCKUP_MESSAGE)}
                   className="btn btn--primary"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   onClick={() =>
-                    trackEvent("cta_email", { location: "repair_success" })
+                    trackEvent("cta_whatsapp", { location: "repair_success" })
                   }
                 >
-                  Échange gratuit · 15 min
+                  {PRIMARY_CTA}
                 </a>
               </div>
             )}
