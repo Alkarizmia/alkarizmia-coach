@@ -1,0 +1,35 @@
+/*
+  X-Content-Type-Options: nosniff
+
+/index.html
+  Content-Type: text/html; charset=utf-8
+
+/a-propos/
+  Content-Type: text/html; charset=utf-8
+
+/a-propos/index.html
+  Content-Type: text/html; charset=utf-8
+
+/creation-site-web-coach-bruxelles/
+  Content-Type: text/html; charset=utf-8
+
+/creation-site-web-coach-bruxelles/index.html
+  Content-Type: text/html; charset=utf-8
+
+/prix-site-internet-coach/
+  Content-Type: text/html; charset=utf-8
+
+/prix-site-internet-coach/index.html
+  Content-Type: text/html; charset=utf-8
+
+/faq-creation-site-coach/
+  Content-Type: text/html; charset=utf-8
+
+/faq-creation-site-coach/index.html
+  Content-Type: text/html; charset=utf-8
+
+/conditions/
+  Content-Type: text/html; charset=utf-8
+
+/conditions/index.html
+  Content-Type: text/html; charset=utf-8

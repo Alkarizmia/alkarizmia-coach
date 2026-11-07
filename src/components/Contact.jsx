@@ -1,33 +1,64 @@
-/** Contact — email + WhatsApp uniquement (pas de formulaire) */
-const EMAIL = "elfahmi.bilal18@gmail.com";
-const WHATSAPP_URL = "https://wa.me/32487870477";
-const WHATSAPP_DISPLAY = "+32 487 87 04 77";
+import {
+  BOOKING_MESSAGE,
+  CONTACT,
+  mailtoLink,
+  whatsappLink,
+} from "../site.config.js";
+import { trackEvent } from "../analytics.js";
 
+/** Contact — email + WhatsApp (pas de formulaire), messages pré-remplis */
 export default function Contact() {
   return (
-    <section id="contact" className="section" aria-labelledby="contact-title">
+    <section id="contact" className="section contact" aria-labelledby="contact-title">
       <div className="container">
-        <h2 id="contact-title">Me contacter</h2>
-        <p>
-          Un échange de 15 minutes suffit pour voir si un site peut vous être
-          utile. Pas d’engagement.
-        </p>
+        <div className="contact__card" data-reveal>
+          <div className="contact__copy">
+            <p className="contact__kicker">Prochaine étape</p>
+            <h2 id="contact-title" className="contact__title">
+              Réservez un échange gratuit de 15 minutes.
+            </h2>
+            <p>
+              Sans engagement. On regarde votre situation et on voit si un site
+              peut vous être utile.
+            </p>
+            <a
+              href="#estimer"
+              className="contact__estimate"
+              onClick={() =>
+                trackEvent("nav_estimer", { location: "contact" })
+              }
+            >
+              Ou estimez d'abord votre prix →
+            </a>
+          </div>
 
-        <div className="contact-actions">
-          <a
-            href={`mailto:${EMAIL}`}
-            className="btn btn--primary"
-          >
-            Envoyer un e-mail
-          </a>
-          <a
-            href={WHATSAPP_URL}
-            className="btn btn--secondary"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            WhatsApp — {WHATSAPP_DISPLAY}
-          </a>
+          <div className="contact__actions">
+            <a
+              href={whatsappLink(BOOKING_MESSAGE)}
+              className="contact__channel"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() =>
+                trackEvent("cta_whatsapp", { location: "contact" })
+              }
+            >
+              <span className="contact__channel-label">WhatsApp</span>
+              <span className="contact__channel-value">{CONTACT.whatsappDisplay}</span>
+              <span className="contact__channel-arrow" aria-hidden="true">↗</span>
+            </a>
+            <a
+              href={mailtoLink(
+                "Échange gratuit de 15 minutes",
+                BOOKING_MESSAGE
+              )}
+              className="contact__channel"
+              onClick={() => trackEvent("cta_email", { location: "contact" })}
+            >
+              <span className="contact__channel-label">E-mail</span>
+              <span className="contact__channel-value">{CONTACT.email}</span>
+              <span className="contact__channel-arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
         </div>
       </div>
     </section>

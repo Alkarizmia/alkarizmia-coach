@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Alkarizmia">
+  <rect width="1200" height="630" fill="#F7F4EE"/>
+  <rect x="0" y="0" width="14" height="630" fill="#1F4D3F"/>
+  <!-- Symbole -->
+  <rect x="80" y="200" width="88" height="88" fill="#1F4D3F"/>
+  <rect x="176" y="200" width="58" height="88" fill="#4F8A74"/>
+  <rect x="80" y="296" width="88" height="58" fill="#4F8A74"/>
+  <rect x="176" y="296" width="58" height="58" fill="#B5654A"/>
+  <!-- Titre + description -->
+  <text x="290" y="255" font-family="Georgia, serif" font-size="56" font-weight="600" fill="#14161C">Alkarizmia</text>
+  <text x="290" y="320" font-family="Arial, sans-serif" font-size="28" fill="#5A5F6B">Création de site web pour coachs à Bruxelles</text>
+  <text x="290" y="370" font-family="Arial, sans-serif" font-size="22" fill="#1F4D3F">Prêt en environ 10 jours · Domaine à votre nom</text>
+</svg>
