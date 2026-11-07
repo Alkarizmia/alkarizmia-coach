@@ -3,6 +3,15 @@
  * Tout ce qui change (contact, liens, prix, mentions légales) se modifie ici.
  */
 
+/** Description courte — à réutiliser partout (SEO, JSON-LD, IA). */
+export const SHORT_DESCRIPTION =
+  "Alkarizmia crée des sites web pour coachs indépendants à Bruxelles.";
+
+export const SOCIAL = {
+  linkedin: "https://www.linkedin.com/in/bilal-el-fahmi",
+  instagram: "https://www.instagram.com/alkarizmia.web/",
+};
+
 export const OWNER = {
   name: "Bilal El Fahmi",
   firstName: "Bilal",

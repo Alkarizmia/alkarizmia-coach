@@ -137,7 +137,10 @@ export default function ExplainerVideo() {
                 <img
                   className="explainer__poster"
                   src={YOUTUBE_POSTER}
-                  alt=""
+                  alt="Vidéo : comment Alkarizmia crée un site web pour coach"
+                  width="480"
+                  height="360"
+                  loading="lazy"
                   decoding="async"
                 />
                 <PlayButton

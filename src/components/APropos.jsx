@@ -24,7 +24,14 @@ export default function APropos() {
       <div className="container about__grid">
         <div className="about__portrait" data-reveal>
           {PHOTO ? (
-            <img src={PHOTO} alt={`${OWNER.firstName}, fondateur d'Alkarizmia`} />
+            <img
+              src={PHOTO}
+              alt={`${OWNER.name}, fondateur d'Alkarizmia à ${OWNER.city}`}
+              width="1024"
+              height="1024"
+              loading="lazy"
+              decoding="async"
+            />
           ) : (
             <div className="about__monogram" aria-hidden="true">
               <span className="about__initial">{OWNER.firstName[0]}</span>
@@ -43,17 +50,18 @@ export default function APropos() {
             Qui est derrière Alkarizmia
           </h2>
           <p data-reveal data-reveal-group="about">
-            Je m'appelle {OWNER.firstName}. Je suis basé à {OWNER.city}. Je crée
-            des sites pour les coachs indépendants et les petites structures.
+            Je m'appelle {OWNER.name}. J'ai 18 ans, je suis basé à {OWNER.city}.
+            Alkarizmia crée des sites web pour coachs indépendants à Bruxelles :
+            coachs sportifs, coachs de vie et bien-être.
           </p>
           <p data-reveal data-reveal-group="about">
             Je pratique la musculation. Je connais cet univers et ce qu'il faut
-            pour être trouvé, compris et contacté sans friction.
+            pour être trouvé, compris et contacté sans friction. Les rendez-vous
+            se font en visio, pour Bruxelles et la Belgique.
           </p>
           <p data-reveal data-reveal-group="about">
-            Vous parlez toujours à la même personne. Chaque étape est expliquée
-            simplement. Le délai annoncé est respecté. À la fin, tout est à
-            votre nom.
+            Vous parlez toujours à la même personne. Inclus : le site, le
+            domaine à votre nom, les accès. Le délai annoncé est respecté.
           </p>
 
           <dl className="about__facts">

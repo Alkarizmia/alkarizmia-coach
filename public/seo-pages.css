@@ -34,6 +34,17 @@ a:hover { color: var(--accent-hover); }
   margin-bottom: 2.5rem;
 }
 .brand:hover { color: var(--accent); }
+.crumbs {
+  font-size: 0.9rem;
+  margin: 0 0 1.25rem;
+  color: var(--muted);
+}
+.crumbs a { text-decoration: none; }
+.lead {
+  color: var(--text);
+  font-size: 1.125rem;
+  margin: 0 0 1.5rem;
+}
 h1 {
   font-family: Georgia, serif;
   font-size: clamp(2rem, 5vw, 2.75rem);

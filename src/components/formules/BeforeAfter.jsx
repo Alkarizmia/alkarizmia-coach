@@ -82,11 +82,24 @@ export default function BeforeAfter({ before, after }) {
         role="group"
         aria-label="Comparaison avant et après"
       >
-        <img src={after} alt="Après refonte" className="formule-ba__img" draggable={false} />
+        <img
+          src={after}
+          alt="Site de coach après refonte Alkarizmia : clair et lisible"
+          className="formule-ba__img"
+          width="390"
+          height="844"
+          loading="lazy"
+          decoding="async"
+          draggable={false}
+        />
         <img
           src={before}
-          alt="Avant refonte"
+          alt="Ancien site de coach avant refonte : lent et confus"
           className="formule-ba__img formule-ba__img--before"
+          width="390"
+          height="844"
+          loading="lazy"
+          decoding="async"
           style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}
           draggable={false}
         />

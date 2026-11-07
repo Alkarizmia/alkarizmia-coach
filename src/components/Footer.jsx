@@ -21,7 +21,7 @@ export default function Footer() {
             {OWNER.brand}
           </a>
           <p>
-            Sites web pour coachs indépendants, à {OWNER.city} et alentours.
+            Alkarizmia crée des sites web pour coachs indépendants à Bruxelles.
           </p>
         </div>
 
@@ -31,8 +31,10 @@ export default function Footer() {
           <a href="#estimer">Estimer mon site</a>
           <a href="#realisations">Réalisations</a>
           <a href="#faq">FAQ</a>
+          <a href="/a-propos/">À propos</a>
           <a href="/creation-site-web-coach-bruxelles/">Site coach Bruxelles</a>
           <a href="/prix-site-internet-coach/">Prix</a>
+          <a href="/faq-creation-site-coach/">Questions fréquentes</a>
         </nav>
 
         <div className="site-footer__col">

@@ -1,30 +1,34 @@
 # Alkarizmia
 
-> Création de sites web pour coachs indépendants à Bruxelles (Belgique).
+> Alkarizmia crée des sites web pour coachs indépendants à Bruxelles.
 
-Alkarizmia aide les coachs (sport, vie, business, bien-être) et les petites structures à avoir un site simple, élégant et pensé pour être contacté. Le site est livré en environ 10 jours, avec domaine et accès à votre nom.
+Alkarizmia est un studio de création de sites web pour coachs indépendants (sport, vie, bien-être) à Bruxelles, en Belgique. Fondateur : Bilal El Fahmi, 18 ans, basé à Bruxelles. Les rendez-vous se font en visio, pour toute la Belgique.
+
+## Offre
+Sites clairs, adaptés au téléphone, avec contact en un clic. Livraison en environ 10 jours. Nom de domaine et accès à votre nom.
+
+## Prix (TVA incluse)
+Un site internet pour coach coûte chez Alkarizmia entre 290 € et 740 € TVA incluse, selon la formule.
+- Essentiel — 350 € : une page (présentation, séances/tarifs, contact)
+- Signature — 590 € : jusqu'à 4 pages, galerie, témoignages, bases SEO
+- Signature + — 740 € : 5 pages ou plus
+- Refonte — dès 290 € : refaire un site existant en gardant les contenus
+- Option Entretien & visibilité — 39 €/mois (6 mois réglés en une fois, sans renouvellement automatique)
+
+## Pages
+- Accueil : https://alkarizmia.com/
+- À propos : https://alkarizmia.com/a-propos/
+- Création de site web coach Bruxelles : https://alkarizmia.com/creation-site-web-coach-bruxelles/
+- Prix site internet coach : https://alkarizmia.com/prix-site-internet-coach/
+- FAQ : https://alkarizmia.com/faq-creation-site-coach/
+- Conditions générales : https://alkarizmia.com/conditions
 
 ## Contact
-- Site: https://alkarizmia.com/
-- Email: contact@alkarizmia.com
-- WhatsApp: +32 487 87 04 77
-- Zone: Bruxelles et alentours (Belgique)
-
-## Formules (tarifs de lancement)
-- Essentiel — 350 € : une page claire (présentation, séances/tarifs, contact)
-- Signature — 590 € : jusqu'à 4 pages, galerie, témoignages, bases SEO
-- Refonte — dès 290 € : refaire un site existant en gardant les contenus
-- Option suivi mensuel — 39 €/mois (6 mois minimum, puis préavis 30 jours)
-
-## Pages utiles
-- Accueil: https://alkarizmia.com/
-- Création de site pour coach à Bruxelles: https://alkarizmia.com/creation-site-web-coach-bruxelles/
-- Prix: https://alkarizmia.com/prix-site-internet-coach/
-- FAQ: https://alkarizmia.com/faq-creation-site-coach/
+- E-mail : contact@alkarizmia.com
+- WhatsApp : +32 487 87 04 77
+- LinkedIn : https://www.linkedin.com/in/bilal-el-fahmi
+- Instagram : https://www.instagram.com/alkarizmia.web/
 
 ## Réalisations
-- ScanPlay: https://scanplay.org
-- PayPulss: https://paypulss.com
-
-## Fondateur
-Bilal El Fahmi — étudiant à Bruxelles, pratique la musculation, crée des sites pour les coachs indépendants.
+- ScanPlay : https://scanplay.org
+- PayPulss : https://paypulss.com

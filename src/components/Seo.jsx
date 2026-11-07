@@ -1,6 +1,5 @@
 import { useEffect } from "react";
-import { FAQ_ITEMS } from "../content/faq.js";
-import { CONTACT, OWNER, PROJECTS } from "../site.config.js";
+import { CONTACT, OWNER, SHORT_DESCRIPTION, SOCIAL } from "../site.config.js";
 
 const SITE_URL = "https://alkarizmia.com";
 
@@ -16,89 +15,44 @@ function upsertJsonLd(id, data) {
 }
 
 /**
- * Données structurées pour Google + assistants IA.
- * Injectées côté client (complètent les meta de index.html).
+ * Complète le JSON-LD déjà présent dans index.html (sans adresse ni avis).
  */
 export default function Seo() {
   useEffect(() => {
     upsertJsonLd("ld-website", {
       "@context": "https://schema.org",
       "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
       name: "Alkarizmia",
       url: SITE_URL,
       inLanguage: "fr-BE",
-      description:
-        "Création de sites web pour coachs indépendants à Bruxelles : sport, vie, business et bien-être.",
-      publisher: {
-        "@type": "Organization",
-        name: "Alkarizmia",
-        logo: {
-          "@type": "ImageObject",
-          url: `${SITE_URL}/logo-symbole.png`,
-        },
-      },
+      description: SHORT_DESCRIPTION,
+      publisher: { "@id": `${SITE_URL}/#business` },
     });
 
-    upsertJsonLd("ld-organization", {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      name: "Alkarizmia",
-      url: SITE_URL,
-      logo: `${SITE_URL}/logo-symbole.png`,
-      image: `${SITE_URL}/og-image.png`,
-      email: CONTACT.email,
-      founder: {
-        "@type": "Person",
-        name: OWNER.name,
-      },
-    });
-
-    upsertJsonLd("ld-localbusiness", {
+    upsertJsonLd("ld-business", {
       "@context": "https://schema.org",
       "@type": "ProfessionalService",
       "@id": `${SITE_URL}/#business`,
       name: "Alkarizmia",
-      description:
-        "Création de sites web élégants pour coachs indépendants à Bruxelles. Prêt en environ 10 jours. Domaine et accès à votre nom.",
+      description: SHORT_DESCRIPTION,
       url: SITE_URL,
       logo: `${SITE_URL}/logo-symbole.png`,
       image: `${SITE_URL}/og-image.png`,
       email: CONTACT.email,
       telephone: `+${CONTACT.whatsappNumber}`,
+      priceRange: "€€",
+      knowsLanguage: "fr",
       areaServed: [
         { "@type": "City", name: "Bruxelles" },
-        { "@type": "AdministrativeArea", name: "Bruxelles-Capitale" },
         { "@type": "Country", name: "Belgique" },
       ],
-      address: {
-        "@type": "PostalAddress",
-        addressLocality: OWNER.city,
-        addressCountry: "BE",
-      },
       founder: {
         "@type": "Person",
         name: OWNER.name,
+        knowsLanguage: "fr",
       },
-      sameAs: PROJECTS.map((p) => p.url).filter(Boolean),
-      priceRange: "€€",
-      serviceType: [
-        "Création de site vitrine",
-        "Refonte de site web",
-        "Suivi mensuel de site",
-      ],
-    });
-
-    upsertJsonLd("ld-faq", {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      mainEntity: FAQ_ITEMS.map((item) => ({
-        "@type": "Question",
-        name: item.q,
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: item.a,
-        },
-      })),
+      sameAs: [SOCIAL.linkedin, SOCIAL.instagram],
     });
   }, []);
 

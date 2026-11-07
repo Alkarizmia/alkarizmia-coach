@@ -103,7 +103,10 @@ function MockSkeleton() {
 function HeroTitle() {
   return (
     <h1 id="hero-title" className="hero__title">
-      <span className="visually-hidden">Votre site, à la hauteur de vos avis.</span>
+      <span className="visually-hidden">
+        Création de site web pour coach à Bruxelles. Votre site, à la hauteur de
+        vos avis.
+      </span>
       <span aria-hidden="true">
         Votre site, à la hauteur de vos{" "}
         <span className="hero__avis">
@@ -131,7 +134,6 @@ function HeroTitle() {
 
 function DeviceStage({ coach, typed, phase, reduced }) {
   const showSite = phase === "hold";
-  const showSkel = !showSite;
   const caret = phase === "typing" || phase === "erasing";
 
   return (
@@ -140,33 +142,41 @@ function DeviceStage({ coach, typed, phase, reduced }) {
       aria-hidden="true"
       style={{ "--coach-accent": coach.accent }}
     >
-      <div className={`hero-desk${reduced ? "" : " hero-desk--float"}`}>
-        <div className="hero-desk__chrome">
-          <div className="hero-desk__dots">
-            <span />
-            <span />
-            <span />
+      <div className={reduced ? undefined : "hero-desk-float"}>
+        <div className="hero-desk">
+          <div className="hero-desk__chrome">
+            <div className="hero-desk__dots">
+              <span />
+              <span />
+              <span />
+            </div>
+            <div className="hero-desk__url">
+              <span className="hero-desk__url-text">{typed}</span>
+              {caret ? <span className="hero-desk__caret" /> : null}
+            </div>
           </div>
-          <div className="hero-desk__url">
-            <span className="hero-desk__url-text">{typed}</span>
-            {caret && <span className="hero-desk__caret" />}
-          </div>
-        </div>
-        <div className="hero-desk__screen">
-          {showSkel && <MockSkeleton />}
-          {showSite && (
-            <div className="hero-desk__site">
+          <div className="hero-desk__screen">
+            <div className={`hero-desk__pane${showSite ? "" : " is-on"}`}>
+              <MockSkeleton />
+            </div>
+            <div className={`hero-desk__pane${showSite ? " is-on" : ""}`}>
               <MockSite coach={coach} />
             </div>
-          )}
+          </div>
         </div>
       </div>
 
-      <div className="hero-handset">
-        <div className="hero-handset__notch" />
-        <div className="hero-handset__screen">
-          {showSkel && <MockSkeleton />}
-          {showSite && <MockSite coach={coach} compact />}
+      <div className="hero-handset-slot">
+        <div className="hero-handset">
+          <div className="hero-handset__notch" />
+          <div className="hero-handset__screen">
+            <div className={`hero-desk__pane${showSite ? "" : " is-on"}`}>
+              <MockSkeleton />
+            </div>
+            <div className={`hero-desk__pane${showSite ? " is-on" : ""}`}>
+              <MockSite coach={coach} compact />
+            </div>
+          </div>
         </div>
       </div>
     </div>

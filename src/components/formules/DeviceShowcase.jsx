@@ -4,7 +4,11 @@ import { useEffect, useState } from "react";
 /**
  * Maquette téléphone (+ desktop) — 3 captures qui défilent en boucle.
  */
-export default function DeviceShowcase({ screens = [], showDesktop = false }) {
+export default function DeviceShowcase({
+  screens = [],
+  showDesktop = false,
+  alt = "Aperçu d'une maquette de site pour coach",
+}) {
   const [index, setIndex] = useState(0);
   const reduce = useReducedMotion();
   const current = screens[index] ?? screens[0];
@@ -35,6 +39,10 @@ export default function DeviceShowcase({ screens = [], showDesktop = false }) {
                   key={`desk-${current}`}
                   src={current}
                   alt=""
+                  width="390"
+                  height="844"
+                  loading="lazy"
+                  decoding="async"
                   className="formule-devices__img"
                   draggable={false}
                   initial={reduce ? false : { opacity: 0 }}
@@ -51,12 +59,16 @@ export default function DeviceShowcase({ screens = [], showDesktop = false }) {
           <div className="formule-devices__notch" aria-hidden="true" />
           <div className="formule-devices__phone-screen">
             <AnimatePresence mode="wait" initial={false}>
-              <motion.img
-                key={current}
-                src={current}
-                alt=""
-                className="formule-devices__img"
-                draggable={false}
+                <motion.img
+                  key={current}
+                  src={current}
+                  alt={alt}
+                  width="390"
+                  height="844"
+                  loading="lazy"
+                  decoding="async"
+                  className="formule-devices__img"
+                  draggable={false}
                 initial={reduce ? false : { opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={reduce ? undefined : { opacity: 0, y: -8 }}

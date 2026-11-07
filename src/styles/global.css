@@ -71,6 +71,7 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--header-h) + 0.75rem);
   overflow-x: hidden;
+  scrollbar-gutter: stable;
 }
 
 body {
@@ -505,7 +506,9 @@ ul {
   }
 
   .hero-phone,
+  .hero-desk-float,
   .hero-desk--float,
+  .hero-handset-slot,
   .hero-handset,
   .hero__avis-line path,
   .wa-fab.is-pulse,
@@ -644,6 +647,8 @@ ul {
 .hero {
   position: relative;
   overflow: hidden;
+  overflow-anchor: none;
+  contain: layout;
   padding-top: 0.85rem;
   padding-bottom: var(--space-4);
 }
@@ -929,6 +934,9 @@ ul {
   min-width: 0;
   display: flex;
   justify-content: center;
+  overflow-anchor: none;
+  contain: layout;
+  isolation: isolate;
 }
 
 /* Lueur statique (pas de filter blur) */
@@ -1087,12 +1095,23 @@ ul {
 
 /* Duo ordinateur + téléphone */
 .hero-stage {
+  --phone-w: 5.85rem;
+  --phone-h: 11.375rem;
   position: relative;
   z-index: 1;
   width: 100%;
   max-width: 22rem;
+  min-height: 13.2rem;
   margin-inline: auto;
-  padding: 0 0.4rem 1.6rem;
+  padding: 0.7rem 0.4rem 1.6rem;
+  overflow: hidden;
+  overflow-anchor: none;
+}
+
+.hero-desk-float {
+  animation: browser-float 7s ease-in-out infinite;
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 .hero-desk {
@@ -1169,22 +1188,43 @@ ul {
   background: #f7f4ee;
 }
 
-.hero-desk__site {
-  height: 100%;
-  animation: mock-content-in 280ms ease-out;
+.hero-desk__pane {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 280ms ease-out;
 }
 
-.hero-handset {
+.hero-desk__pane.is-on {
+  opacity: 1;
+}
+
+.hero-desk__site {
+  height: 100%;
+}
+
+.hero-handset-slot {
   position: absolute;
   right: 0.15rem;
   bottom: 0;
   z-index: 3;
-  width: 5.85rem;
-  aspect-ratio: 9 / 17.5;
+  width: var(--phone-w);
+  height: var(--phone-h);
+  overflow: hidden;
+  pointer-events: none;
+  contain: strict;
+}
+
+.hero-handset {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  max-height: 100%;
   padding: 5px;
   border-radius: 12px;
   background: #1a1c22;
   box-shadow: 0 10px 24px rgba(20, 22, 28, 0.22);
+  overflow: hidden;
 }
 
 .hero-handset__notch {
@@ -1200,14 +1240,12 @@ ul {
 }
 
 .hero-handset__screen {
+  position: relative;
   height: 100%;
+  min-height: 0;
   border-radius: 8px;
   overflow: hidden;
   background: #f7f4ee;
-}
-
-.hero-handset__screen > * {
-  height: 100%;
 }
 
 .mock-coach {
@@ -1436,8 +1474,11 @@ ul {
   }
 
   .hero-stage {
+    --phone-w: 7.4rem;
+    --phone-h: 14.39rem;
     max-width: none;
-    padding: 0 0.5rem 2.2rem;
+    min-height: 20rem;
+    padding: 0.85rem 0.5rem 2.2rem;
   }
 
   .hero-desk__chrome {
@@ -1453,9 +1494,11 @@ ul {
     height: 14.5rem;
   }
 
-  .hero-handset {
-    width: 7.4rem;
+  .hero-handset-slot {
     right: -0.2rem;
+  }
+
+  .hero-handset {
     padding: 7px;
     border-radius: 16px;
   }
@@ -1486,6 +1529,10 @@ ul {
   .mock-skel__btn,
   .mock-skel__cards span {
     animation: none;
+  }
+
+  .hero-desk__pane {
+    transition: none;
   }
 }
 

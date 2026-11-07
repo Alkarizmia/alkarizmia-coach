@@ -152,6 +152,7 @@ export default function FormuleDetail({ formule, onClose }) {
             <DeviceShowcase
               screens={formule.screens}
               showDesktop={formule.showDesktop}
+              alt={`Maquette de site formule ${formule.name} pour coach`}
             />
           )}
 
