@@ -26,4 +26,13 @@ Allow: /
 User-agent: Bingbot
 Allow: /
 
+User-agent: Claude-User
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
 Sitemap: https://alkarizmia.com/sitemap.xml

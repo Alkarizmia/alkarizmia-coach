@@ -66,7 +66,7 @@ function MockSite({ coach, compact = false }) {
       <div className="mock-coach__body">
         <p className="mock-coach__rating">
           <span className="mock-coach__stars">★★★★★</span>
-          4,9 sur Google
+          Avis Google
         </p>
         <div className="mock-coach__cards">
           {coach.sessions.map((session) => (
@@ -373,6 +373,7 @@ export default function Hero() {
             phase={reduced ? "hold" : phase}
             reduced={reduced}
           />
+          <p className="hero__caption">Exemples de sites de démonstration</p>
         </div>
       </div>
     </section>

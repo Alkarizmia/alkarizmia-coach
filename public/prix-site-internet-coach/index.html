@@ -16,20 +16,19 @@
         }
       } catch (e) {}
     </script>
-    <link rel="icon" href="/favicon.ico" sizes="any" />
-    <link rel="icon" type="image/png" sizes="48x48" href="/favicon.png" />
-    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Prix site internet coach à Bruxelles : TVA incluse</title>
-    <meta name="description" content="Prix d'un site internet coach chez Alkarizmia : 290 € à 740 € TVA incluse. Essentiel 350 €, Signature 590 €. Demandez un devis fixe en 15 minutes." />
+    <meta name="description" content="Prix d'un site internet coach chez Alkarizmia : Refonte dès 290 €, Essentiel 350 €, Signature 590 €, Signature + 740 €. TVA incluse. Entretien 39 €/mois." />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://alkarizmia.com/prix-site-internet-coach/" />
     <meta property="og:title" content="Prix site internet coach à Bruxelles : TVA incluse" />
-    <meta property="og:description" content="Prix d'un site internet coach chez Alkarizmia : 290 € à 740 € TVA incluse. Essentiel 350 €, Signature 590 €. Demandez un devis fixe en 15 minutes." />
+    <meta property="og:description" content="Prix d'un site internet coach chez Alkarizmia : Refonte dès 290 €, Essentiel 350 €, Signature 590 €, Signature + 740 €. TVA incluse. Entretien 39 €/mois." />
     <meta property="og:url" content="https://alkarizmia.com/prix-site-internet-coach/" />
-    <meta property="og:type" content="article" />
+    <meta property="og:type" content="website" />
     <meta property="og:locale" content="fr_BE" />
     <meta property="og:site_name" content="Alkarizmia" />
     <meta property="og:image" content="https://alkarizmia.com/og-image.png" />
@@ -39,7 +38,7 @@
     <meta property="og:image:alt" content="Alkarizmia — création de sites web pour coachs à Bruxelles" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Prix site internet coach à Bruxelles : TVA incluse" />
-    <meta name="twitter:description" content="Prix d'un site internet coach chez Alkarizmia : 290 € à 740 € TVA incluse. Essentiel 350 €, Signature 590 €. Demandez un devis fixe en 15 minutes." />
+    <meta name="twitter:description" content="Prix d'un site internet coach chez Alkarizmia : Refonte dès 290 €, Essentiel 350 €, Signature 590 €, Signature + 740 €. TVA incluse. Entretien 39 €/mois." />
     <meta name="twitter:image" content="https://alkarizmia.com/og-image.png" />
     <link rel="stylesheet" href="/seo-pages.css" />
     <script type="application/ld+json">
@@ -51,7 +50,7 @@
   "url": "https://alkarizmia.com/",
   "logo": "https://alkarizmia.com/logo-symbole.png",
   "image": "https://alkarizmia.com/og-image.png",
-  "description": "Alkarizmia crée des sites web pour coachs indépendants à Bruxelles.",
+  "description": "Alkarizmia crée des sites web pour coachs indépendants à Bruxelles et en Belgique.",
   "email": "contact@alkarizmia.com",
   "telephone": "+32487870477",
   "priceRange": "€€",
@@ -69,7 +68,15 @@
   "founder": {
     "@type": "Person",
     "name": "Bilal El Fahmi",
-    "knowsLanguage": "fr"
+    "jobTitle": "Fondateur d'Alkarizmia",
+    "knowsLanguage": "fr",
+    "sameAs": [
+      "https://www.linkedin.com/in/bilal-el-fahmi",
+      "https://www.instagram.com/alkarizmia.web/"
+    ],
+    "worksFor": {
+      "@id": "https://alkarizmia.com/#business"
+    }
   },
   "sameAs": [
     "https://www.linkedin.com/in/bilal-el-fahmi",
@@ -85,7 +92,7 @@
   "name": "Alkarizmia",
   "url": "https://alkarizmia.com/",
   "inLanguage": "fr-BE",
-  "description": "Alkarizmia crée des sites web pour coachs indépendants à Bruxelles.",
+  "description": "Alkarizmia crée des sites web pour coachs indépendants à Bruxelles et en Belgique.",
   "publisher": {
     "@id": "https://alkarizmia.com/#business"
   }
@@ -134,15 +141,28 @@
   "offers": [
     {
       "@type": "Offer",
+      "name": "Refonte",
+      "price": "290",
+      "priceCurrency": "EUR",
+      "description": "Refonte dès 290 €. TVA incluse.",
+      "priceSpecification": {
+        "@type": "UnitPriceSpecification",
+        "priceCurrency": "EUR",
+        "valueAddedTaxIncluded": true,
+        "minPrice": "290"
+      }
+    },
+    {
+      "@type": "Offer",
       "name": "Essentiel",
       "price": "350",
       "priceCurrency": "EUR",
-      "description": "Une page claire. TVA incluse.",
+      "description": "1 page. TVA incluse.",
       "priceSpecification": {
         "@type": "UnitPriceSpecification",
-        "price": "350",
         "priceCurrency": "EUR",
-        "valueAddedTaxIncluded": true
+        "valueAddedTaxIncluded": true,
+        "price": "350"
       }
     },
     {
@@ -150,25 +170,39 @@
       "name": "Signature",
       "price": "590",
       "priceCurrency": "EUR",
-      "description": "Jusqu'à 4 pages. TVA incluse.",
+      "description": "jusqu'à 4 pages. TVA incluse.",
       "priceSpecification": {
         "@type": "UnitPriceSpecification",
-        "price": "590",
         "priceCurrency": "EUR",
-        "valueAddedTaxIncluded": true
+        "valueAddedTaxIncluded": true,
+        "price": "590"
       }
     },
     {
       "@type": "Offer",
-      "name": "Refonte",
-      "price": "290",
+      "name": "Signature +",
+      "price": "740",
       "priceCurrency": "EUR",
-      "description": "Refonte dès 290 €. TVA incluse.",
+      "description": "5 pages ou plus. TVA incluse.",
       "priceSpecification": {
         "@type": "UnitPriceSpecification",
-        "minPrice": "290",
         "priceCurrency": "EUR",
-        "valueAddedTaxIncluded": true
+        "valueAddedTaxIncluded": true,
+        "price": "740"
+      }
+    },
+    {
+      "@type": "Offer",
+      "name": "Entretien & visibilité",
+      "price": "39",
+      "priceCurrency": "EUR",
+      "description": "Entretien & visibilité — 39 €/mois (6 mois réglés en une fois, sans renouvellement automatique)",
+      "priceSpecification": {
+        "@type": "UnitPriceSpecification",
+        "priceCurrency": "EUR",
+        "valueAddedTaxIncluded": true,
+        "price": "39",
+        "unitText": "mois"
       }
     }
   ]
@@ -182,7 +216,7 @@
         <a href="/">Accueil</a><span aria-hidden="true"> / </span><span aria-current="page">Prix</span>
       </nav>
       <h1>Prix site internet coach à Bruxelles</h1>
-      <p class="lead">Un site internet pour coach coûte chez Alkarizmia entre 290 € et 740 € TVA incluse, selon la formule. Essentiel 350 €, Signature 590 €, Refonte dès 290 €. Prix fixe, annoncé avant de commencer.</p>
+      <p class="lead">Un site internet pour coach coûte chez Alkarizmia entre 290 € et 740 € TVA incluse, selon la formule. Essentiel 350 €, Signature 590 €, Signature + 740 €, Refonte dès 290 €. Prix fixe, annoncé avant de commencer.</p>
       <div class="card">
         <h2>Essentiel</h2>
         <p class="price">350 €</p>
@@ -194,14 +228,19 @@
         <p>Jusqu'à 4 pages, galerie, témoignages et bases du référencement.</p>
       </div>
       <div class="card">
+        <h2>Signature +</h2>
+        <p class="price">740 €</p>
+        <p>5 pages ou plus</p>
+      </div>
+      <div class="card">
         <h2>Refonte</h2>
         <p class="price">dès 290 €</p>
         <p>Votre site actuel est lent ou difficile ? Je le refais en gardant vos contenus.</p>
       </div>
 
-      <h2>Option suivi</h2>
+      <h2>Entretien & visibilité — 39 €/mois (6 mois réglés en une fois, sans renouvellement automatique)</h2>
       <p>
-        Suivi mensuel à 39 €/mois : mises à jour, 2 petites modifications par
+        Mises à jour, 2 petites modifications par
         mois, vérifications. 6 mois réglés en une fois, sans renouvellement automatique.
       </p>
       <p>
@@ -221,8 +260,10 @@
 
       <p>
         <a class="cta cta--primary" href="/#contact">Demander un devis</a>
-        <a class="cta cta--secondary" href="/#offres">Voir le simulateur</a>
+        <a class="cta cta--secondary" href="/#estimer">Voir le simulateur</a>
       </p>
+
+      <p class="updated">Mis à jour le 7 novembre 2026</p>
 
       <p class="foot">
         <a href="/">Accueil</a> ·

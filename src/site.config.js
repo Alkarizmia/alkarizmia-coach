@@ -5,7 +5,7 @@
 
 /** Description courte — à réutiliser partout (SEO, JSON-LD, IA). */
 export const SHORT_DESCRIPTION =
-  "Alkarizmia crée des sites web pour coachs indépendants à Bruxelles.";
+  "Alkarizmia crée des sites web pour coachs indépendants à Bruxelles et en Belgique.";
 
 export const SOCIAL = {
   linkedin: "https://www.linkedin.com/in/bilal-el-fahmi",

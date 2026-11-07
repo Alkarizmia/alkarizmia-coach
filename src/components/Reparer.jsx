@@ -98,6 +98,7 @@ export default function Reparer() {
         <h2 id="reparer-title" className="section__title">
           Réparez ce site en 5 clics
         </h2>
+        <p className="reparer__hint">Site de démonstration</p>
 
         <div
           className={`reparer__gauge ${gaugeClass}`}

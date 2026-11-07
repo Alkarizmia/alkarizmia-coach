@@ -2,11 +2,10 @@
 <html lang="fr-BE">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="/favicon.ico" sizes="any" />
-    <link rel="icon" type="image/png" sizes="48x48" href="/favicon.png" />
-    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#F7F4EE" />
 
@@ -18,8 +17,6 @@
     <meta name="author" content="Bilal El Fahmi — Alkarizmia" />
     <meta name="robots" content="index, follow, max-image-preview:large" />
     <link rel="canonical" href="https://alkarizmia.com/" />
-    <link rel="alternate" hreflang="fr-BE" href="https://alkarizmia.com/" />
-    <link rel="alternate" hreflang="fr" href="https://alkarizmia.com/" />
 
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="fr_BE" />
@@ -64,7 +61,7 @@
         "url": "https://alkarizmia.com/",
         "logo": "https://alkarizmia.com/logo-symbole.png",
         "image": "https://alkarizmia.com/og-image.png",
-        "description": "Alkarizmia crée des sites web pour coachs indépendants à Bruxelles.",
+        "description": "Alkarizmia crée des sites web pour coachs indépendants à Bruxelles et en Belgique.",
         "email": "contact@alkarizmia.com",
         "telephone": "+32487870477",
         "priceRange": "€€",
@@ -76,7 +73,13 @@
         "founder": {
           "@type": "Person",
           "name": "Bilal El Fahmi",
-          "knowsLanguage": "fr"
+          "jobTitle": "Fondateur d'Alkarizmia",
+          "knowsLanguage": "fr",
+          "sameAs": [
+            "https://www.linkedin.com/in/bilal-el-fahmi",
+            "https://www.instagram.com/alkarizmia.web/"
+          ],
+          "worksFor": { "@id": "https://alkarizmia.com/#business" }
         },
         "sameAs": [
           "https://www.linkedin.com/in/bilal-el-fahmi",
@@ -92,7 +95,7 @@
         "name": "Alkarizmia",
         "url": "https://alkarizmia.com/",
         "inLanguage": "fr-BE",
-        "description": "Alkarizmia crée des sites web pour coachs indépendants à Bruxelles.",
+        "description": "Alkarizmia crée des sites web pour coachs indépendants à Bruxelles et en Belgique.",
         "publisher": { "@id": "https://alkarizmia.com/#business" }
       }
     </script>
@@ -112,14 +115,187 @@
     </script>
   </head>
   <body>
-    <div id="root">
-      <h1>Création de site web pour coach à Bruxelles</h1>
-      <p>
-        Alkarizmia crée des sites web pour coachs indépendants à Bruxelles. Un
-        site clair, adapté au téléphone, avec contact en un clic. Livraison en
-        environ 10 jours, domaine à votre nom.
-      </p>
-    </div>
+    <div id="root"><!--ssr-home-->
+      <div class="ssr-home">
+        <style>
+          .ssr-home { max-width: 42rem; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+          .ssr-home h1 { font-family: Georgia, serif; font-size: clamp(2rem, 5vw, 2.75rem); line-height: 1.15; }
+          .ssr-home h2 { font-family: Georgia, serif; font-size: 1.5rem; margin: 2.5rem 0 0.75rem; }
+          .ssr-home h3 { font-size: 1.15rem; margin: 1.5rem 0 0.5rem; }
+          .ssr-home p, .ssr-home li { max-width: 62ch; }
+          .ssr-home nav { display: flex; flex-wrap: wrap; gap: 0.75rem 1.25rem; margin: 2rem 0; }
+        </style>
+        <h1>Création de site web pour coach à Bruxelles</h1>
+        <p>
+          Alkarizmia crée des sites web pour coachs indépendants à Bruxelles. Un
+          site clair, adapté au téléphone, avec contact en un clic. Livraison en
+          environ 10 jours, domaine à votre nom.
+        </p>
+        <nav aria-label="Pages">
+          <a href="/creation-site-web-coach-bruxelles/">Création de site coach</a>
+          <a href="/prix-site-internet-coach/">Prix</a>
+          <a href="/faq-creation-site-coach/">Questions fréquentes</a>
+          <a href="/a-propos/">À propos</a>
+        </nav>
+
+        <p>Tarifs de lancement pour mes premiers clients</p>
+        <h2>Formules</h2>
+        <p>Vous payez une fois. Le site est à vous, pour toujours.</p>
+          <article>
+            <h3>Essentiel — 350 €</h3>
+            <p>Pour être trouvé sur Google et prendre contact en un clic.</p>
+            <p>Ce que vous recevez</p>
+            <ul>
+            <li>Une page avec votre histoire, vos séances et vos tarifs</li>
+            <li>Bouton WhatsApp et appel en un clic</li>
+            <li>Vos avis Google affichés</li>
+            <li>Adapté au téléphone</li>
+            <li>Nom de domaine et hébergement à votre nom</li>
+            <li>Bases pour être trouvé sur Google</li>
+            </ul>
+          </article>
+          <article>
+            <h3>Signature — 590 €</h3>
+            <p>Pour présenter chaque séance, vos résultats et vos avis.</p>
+            <p>Ce que vous recevez</p>
+            <ul>
+            <li>Jusqu'à 4 pages : présentation, séances, galerie, contact</li>
+            <li>Témoignages et avis mis en avant</li>
+            <li>Contact direct WhatsApp et appel</li>
+            <li>Version mobile d'abord</li>
+            <li>Nom de domaine et hébergement à votre nom</li>
+            <li>Bases SEO locales (ex. coach à Bruxelles)</li>
+            </ul>
+          </article>
+          <article>
+            <h3>Signature + — 740 €</h3>
+            <p>Pour les coachs avec plusieurs offres, lieux ou programmes.</p>
+            <p>Ce que vous recevez</p>
+            <ul>
+            <li>5 pages ou plus : offres, programmes, lieux, blog si besoin</li>
+            <li>Galerie, avis et preuves de résultats</li>
+            <li>Contact et prise de rendez-vous simplifiés</li>
+            <li>Expérience fluide sur téléphone</li>
+            <li>Nom de domaine et hébergement à votre nom</li>
+            <li>Structure SEO pour plusieurs mots-clés</li>
+            </ul>
+          </article>
+          <article>
+            <h3>Refonte — dès 290 €</h3>
+            <p>Votre site existe mais il est lent, vieux ou difficile à utiliser ? Je le refais en gardant vos contenus.</p>
+            <p>Ce que vous recevez</p>
+            <ul>
+            <li>Refonte complète en gardant vos contenus existants</li>
+            <li>Navigation claire, surtout sur téléphone</li>
+            <li>Bases techniques pour Google</li>
+            <li>Domaine et accès restent à votre nom</li>
+            </ul>
+          </article>
+
+        <h2>Entretien &amp; visibilité, 39 € par mois</h2>
+        <p>En option, après la livraison</p>
+        <ul>
+            <li>Vos nouveaux avis Google ajoutés au site</li>
+            <li>Un rapport chaque mois</li>
+            <li>2 petites modifications par mois</li>
+            <li>Sauvegardes et vérifications</li>
+        </ul>
+        <p>6 mois, réglés en une fois. Pas de renouvellement automatique : un mois avant la fin, je vous propose de prolonger.</p>
+
+        <h2>Comment ça se passe</h2>
+        <ol>
+          <li>
+            <p>Jour 1</p>
+            <strong>Échange de 15 min</strong>
+            <p>On parle de votre activité, de vos clients et de ce que le site doit faire pour vous.</p>
+          </li>
+          <li>
+            <p>Jours 2 à 9</p>
+            <strong>Création</strong>
+            <p>Je conçois et construis votre site. Vous validez les grandes lignes en cours de route.</p>
+          </li>
+          <li>
+            <p>Jour 10</p>
+            <strong>Livraison</strong>
+            <p>Vous recevez le site avec un accès complet.</p>
+          </li>
+        </ol>
+
+        <h2>Questions fréquentes</h2>
+          <details>
+            <summary>Quel est le délai de livraison ?</summary>
+            <p>Environ 10 jours après notre échange, dès que j'ai vos contenus (textes, photos, logo si vous en avez un). Une page seule est souvent prête en une semaine ; un site de 5 pages ou plus demande plutôt deux semaines. Le délai est confirmé avant de commencer.</p>
+          </details>
+          <details>
+            <summary>Qui possède le domaine ?</summary>
+            <p>Vous. Le nom de domaine (environ dix euros par an) et l'hébergement sont enregistrés à votre nom. À la livraison, je vous transmets tous les accès : vous n'êtes jamais dépendant de moi.</p>
+          </details>
+          <details>
+            <summary>Comment sont fixés les prix ?</summary>
+            <p>Chaque formule a un prix fixe, annoncé avant de commencer. Le simulateur vous donne une estimation en 30 secondes ; le prix final est confirmé pendant l'échange de 15 minutes et ne change pas en cours de route, sauf si vous ajoutez des pages ou des fonctions.</p>
+          </details>
+          <details>
+            <summary>Puis-je demander des modifications après livraison ?</summary>
+            <p>Oui. Avec l'Entretien &amp; visibilité (39 €/mois, 6 mois réglés en une fois), deux petites modifications par mois sont incluses, ainsi que les mises à jour et les vérifications. Ce n'est pas renouvelé automatiquement : un mois avant la fin, je vous propose de prolonger. Sans entretien, chaque modification est chiffrée à l'avance, au cas par cas.</p>
+          </details>
+          <details>
+            <summary>Je n'ai pas de photos ni de textes. C'est un problème ?</summary>
+            <p>Non. Des photos prises au téléphone suffisent souvent, et je vous guide pour les choisir. Pour les textes, je vous pose quelques questions simples, ou je les rédige pour vous en option.</p>
+          </details>
+          <details>
+            <summary>Mon site sera-t-il visible sur Google et sur téléphone ?</summary>
+            <p>Chaque site est conçu d'abord pour le téléphone, là où vos clients vous cherchent. La formule Signature inclut les bases du référencement : titres, descriptions, vitesse de chargement et mots-clés locaux comme « coach à Bruxelles ».</p>
+          </details>
+          <details>
+            <summary>Qui peut créer un site web pour un coach à Bruxelles ?</summary>
+            <p>Alkarizmia crée des sites web pour coachs indépendants à Bruxelles et en Belgique. Coachs sportifs, de vie, bien-être, nutrition ou yoga : un interlocuteur unique, du premier échange à la mise en ligne. Les rendez-vous se font en visio.</p>
+          </details>
+          <details>
+            <summary>Combien coûte un site internet pour un coach en Belgique ?</summary>
+            <p>Un site internet pour coach coûte chez Alkarizmia entre 290 € et 740 € TVA incluse. Essentiel 350 €, Signature 590 €, Signature + 740 €, Refonte dès 290 €. Le prix est fixe, annoncé avant de commencer.</p>
+          </details>
+          <details>
+            <summary>J'ai déjà Instagram, ai-je besoin d'un site ?</summary>
+            <p>Oui. Un site à votre nom vous rend trouvable sur Google et reste à vous, même si un réseau change ses règles. Instagram, Linktree ou Calendly ne remplacent pas une page claire avec vos séances, tarifs et un contact WhatsApp. Le site et vos réseaux se complètent.</p>
+          </details>
+          <details>
+            <summary>Puis-je payer en deux fois ?</summary>
+            <p>Oui : un acompte de 40 % au démarrage et le solde quand le site est validé. Le paiement en une fois à la signature est aussi possible. Dans les deux cas, le montant est fixé avant de commencer.</p>
+          </details>
+          <details>
+            <summary>Travaillez-vous en dehors de Bruxelles ?</summary>
+            <p>Oui, partout en Belgique. Les rendez-vous se font en visio. Le site reste pensé pour un coach indépendant qui veut être trouvé localement et contacté sans friction.</p>
+          </details>
+          <details>
+            <summary>Que se passe-t-il si le site ne me plaît pas ?</summary>
+            <p>Deux séries de corrections sont incluses après la présentation du site. Le solde n'est demandé qu'après votre validation. L'acompte est remboursable tant que le travail n'a pas commencé.</p>
+          </details>
+
+        <h2>Qui est derrière Alkarizmia</h2>
+        <p>
+          Je m'appelle Bilal El Fahmi. J'ai 18 ans, je suis basé à Bruxelles.
+          Alkarizmia crée des sites web pour coachs indépendants à Bruxelles :
+          coachs sportifs, coachs de vie et bien-être.
+        </p>
+        <p>
+          Je pratique la musculation. Je connais cet univers et ce qu'il faut
+          pour être trouvé, compris et contacté sans friction. Les rendez-vous
+          se font en visio, pour Bruxelles et la Belgique.
+        </p>
+        <p>
+          Vous parlez toujours à la même personne. Inclus : le site, le
+          domaine à votre nom, les accès. Le délai annoncé est respecté.
+        </p>
+
+        <h2>Réservez un échange gratuit de 15 minutes.</h2>
+        <p>
+          Sans engagement. On regarde votre situation et on voit si un site
+          peut vous être utile.
+        </p>
+        <p>E-mail : <a href="mailto:contact@alkarizmia.com">contact@alkarizmia.com</a></p>
+        <p>WhatsApp : <a href="https://wa.me/32487870477">+32 487 87 04 77</a></p>
+      </div>
+    <!--/ssr-home--></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

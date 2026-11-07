@@ -73,8 +73,11 @@
       ]
     }
   ],
-  "rewrites": [
-    { "source": "/conditions", "destination": "/index.html" },
-    { "source": "/conditions/", "destination": "/index.html" }
+  "redirects": [
+    {
+      "source": "/conditions",
+      "destination": "/conditions/",
+      "permanent": true
+    }
   ]
 }

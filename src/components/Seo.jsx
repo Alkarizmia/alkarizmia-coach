@@ -50,7 +50,10 @@ export default function Seo() {
       founder: {
         "@type": "Person",
         name: OWNER.name,
+        jobTitle: "Fondateur d'Alkarizmia",
         knowsLanguage: "fr",
+        sameAs: [SOCIAL.linkedin, SOCIAL.instagram],
+        worksFor: { "@id": `${SITE_URL}/#business` },
       },
       sameAs: [SOCIAL.linkedin, SOCIAL.instagram],
     });

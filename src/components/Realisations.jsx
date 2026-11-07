@@ -33,11 +33,10 @@ export default function Realisations() {
           Projets
         </p>
         <h2 id="realisations-title" className="section__title" data-reveal>
-          Réalisations
+          Projets du fondateur
         </h2>
         <p className="realisations__lead" data-reveal>
-          Deux projets construits de A à Z : design, développement et mise en
-          ligne.
+          Deux applications que j'ai conçues et développées de A à Z.
         </p>
 
         <div className="realisations-grid">

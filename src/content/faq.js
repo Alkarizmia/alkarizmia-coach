@@ -24,4 +24,28 @@ export const FAQ_ITEMS = [
     q: "Mon site sera-t-il visible sur Google et sur téléphone ?",
     a: "Chaque site est conçu d'abord pour le téléphone, là où vos clients vous cherchent. La formule Signature inclut les bases du référencement : titres, descriptions, vitesse de chargement et mots-clés locaux comme « coach à Bruxelles ».",
   },
+  {
+    q: "Qui peut créer un site web pour un coach à Bruxelles ?",
+    a: "Alkarizmia crée des sites web pour coachs indépendants à Bruxelles et en Belgique. Coachs sportifs, de vie, bien-être, nutrition ou yoga : un interlocuteur unique, du premier échange à la mise en ligne. Les rendez-vous se font en visio.",
+  },
+  {
+    q: "Combien coûte un site internet pour un coach en Belgique ?",
+    a: "Un site internet pour coach coûte chez Alkarizmia entre 290 € et 740 € TVA incluse. Essentiel 350 €, Signature 590 €, Signature + 740 €, Refonte dès 290 €. Le prix est fixe, annoncé avant de commencer.",
+  },
+  {
+    q: "J'ai déjà Instagram, ai-je besoin d'un site ?",
+    a: "Oui. Un site à votre nom vous rend trouvable sur Google et reste à vous, même si un réseau change ses règles. Instagram, Linktree ou Calendly ne remplacent pas une page claire avec vos séances, tarifs et un contact WhatsApp. Le site et vos réseaux se complètent.",
+  },
+  {
+    q: "Puis-je payer en deux fois ?",
+    a: "Oui : un acompte de 40 % au démarrage et le solde quand le site est validé. Le paiement en une fois à la signature est aussi possible. Dans les deux cas, le montant est fixé avant de commencer.",
+  },
+  {
+    q: "Travaillez-vous en dehors de Bruxelles ?",
+    a: "Oui, partout en Belgique. Les rendez-vous se font en visio. Le site reste pensé pour un coach indépendant qui veut être trouvé localement et contacté sans friction.",
+  },
+  {
+    q: "Que se passe-t-il si le site ne me plaît pas ?",
+    a: "Deux séries de corrections sont incluses après la présentation du site. Le solde n'est demandé qu'après votre validation. L'acompte est remboursable tant que le travail n'a pas commencé.",
+  },
 ];
