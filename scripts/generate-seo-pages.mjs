@@ -617,7 +617,6 @@ const sitemapUrls = [
     changefreq: "monthly",
   },
   { loc: `${SITE}/a-propos/`, priority: "0.7", changefreq: "monthly" },
-  { loc: `${SITE}/llms.txt`, priority: "0.3", changefreq: "monthly" },
   { loc: `${SITE}/conditions`, priority: "0.4", changefreq: "yearly" },
 ];
 
